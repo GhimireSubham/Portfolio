@@ -4,574 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subham Ghimire | Portfolio</title>
+
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ============================
-           HERO / BIO
-        ============================ */
-        .pageHeader
-        {
-            text-align: center;
-            margin-bottom: 65px;
-        }
-        .pageHeader h1
-        {
-            font-size: 48px;
-            margin-bottom: 6px;
-            color: #1F2933;
-        }
-        /* Container for the profile content following the box model */
-        .contentArea
-        {
-            background-color: #fff;
-            border-radius: 8px;
-            border: 1px solid #eee;
-            margin: 50px auto;
-            padding: 40px;
-        }
-        /* Flexbox configuration for the profile and mission statement */
-        .bioSection
-        {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        /* Circular frame logic for profile image */
-        .profileImg
-        {
-            width: 250px;
-            min-width: 250px;
-            height: 250px;
-            border-radius: 126px; /* Optimized for standard 250px container */
-            overflow: hidden;
-            border: 2px solid #eeeeee;
-        }
-        /* Object-fit ensures the aspect ratio is maintained in the circle */
-        .profileImg img
-        {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+
+        /* ===================================
+           HERO
+        =================================== */
+
+        .pageHeader{
+            height:calc(100vh - 96px);
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            text-align:center;
         }
 
-        /* ============================
-           LAYOUT OVERRIDE
-           (style.css sets <main> to a
-           centered flex-row for the
-           single hero block. This page
-           has multiple stacked sections,
-           so it needs to flow vertically.)
-        ============================ */
-        main
-        {
-            display: block;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .heroContent{
+            width:760px;
         }
 
-        section
-        {
-            margin: 100px auto;
-            max-width: 1200px;
+        .roleLine{
+            margin-bottom:20px;
+
+            font-size:14px;
+            font-weight:500;
+            letter-spacing:3px;
+            text-transform:uppercase;
         }
 
-        .sectionLabel
-        {
-            display: block;
-            text-align: center;
-            letter-spacing: 2px;
-            color: #2F5F3E;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 14px;
-            margin-bottom: 8px;
+        .pageHeader h1{
+            margin-bottom:28px;
+
+            font-family:"Playfair Display", serif;
+            font-size:148px;
+            font-weight:900;
+            line-height:136px;
+            letter-spacing:-4px;
         }
 
-        .sectionTitle
-        {
-            text-align: center;
-            font-size: 34px;
-            color: #1F2933;
-            margin-bottom: 45px;
+        .tagline{
+            width:620px;
+            margin:0 auto;
+
+            font-size:18px;
+            line-height:34px;
         }
 
-        /* ============================
-           SKILLS / SERVICES
-        ============================ */
-        .skillsGrid
-        {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+        @media (max-width:900px){
+
+            .pageHeader{
+                height:auto;
+                padding:96px 0;
+            }
+
+            .heroContent,
+            .tagline{
+                width:100%;
+            }
+
+            .pageHeader h1{
+                font-size:72px;
+                line-height:72px;
+                letter-spacing:-2px;
+            }
+
         }
 
-        .skillCard
-        {
-            background-color: #fff;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 30px 25px;
-        }
-
-        .skillCard h3
-        {
-            font-size: 19px;
-            color: #1F2933;
-            margin-bottom: 10px;
-        }
-
-        .skillCard p
-        {
-            font-size: 15px;
-            color: #52606D;
-        }
-
-        /* ============================
-           FEATURED PROJECTS
-        ============================ */
-        .projectsGrid
-        {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-        }
-
-        .projectCard
-        {
-            background-color: #fff;
-            border: 1px solid #eee;
-            width: 500px;
-            border-radius: 8px;
-            overflow: hidden;
-            text-decoration: none;
-            display: block;
-            transition: box-shadow 0.25s ease;
-        }
-
-        .projectCard:hover
-        {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-        }
-
-        .projectCard img
-        {
-            width: 100%;
-            height: 270px;
-            object-fit: cover;
-            display: block;
-            border-bottom: 1px solid #eeeeee6e;
-        }
-
-        .projectCardBody
-        {
-            padding: 20px;
-        }
-
-        .projectTag
-        {
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #2F5F3E;
-            font-weight: 600;
-        }
-
-        .projectCardBody h3
-        {
-            font-size: 19px;
-            color: #1F2933;
-            margin: 8px 0 6px;
-        }
-
-        .projectCardBody p
-        {
-            font-size: 14px;
-            color: #52606D;
-        }
-
-        /* ============================
-           PROCESS
-        ============================ */
-        .processGrid
-        {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .processStep
-        {
-            text-align: center;
-        }
-
-        .processNumber
-        {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background-color: #2F5F3E;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            margin: 0 auto 16px;
-        }
-
-        .processStep h3
-        {
-            font-size: 17px;
-            color: #1F2933;
-            margin-bottom: 8px;
-        }
-
-        .processStep p
-        {
-            font-size: 14px;
-            color: #52606D;
-        }
-
-        /* ============================
-           TESTIMONIAL
-        ============================ */
-        .testimonialCard
-        {
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-            background-color: #fff;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 45px;
-        }
-
-        .testimonialCard p
-        {
-            font-size: 19px;
-            font-style: italic;
-            color: #1F2933;
-            margin-bottom: 20px;
-        }
-
-        .testimonialAuthor
-        {
-            font-size: 14px;
-            color: #52606D;
-            font-style: normal;
-        }
-
-        .testimonialAuthor strong
-        {
-            color: #1F2933;
-        }
-
-        /* ============================
-           CTA
-        ============================ */
-        .ctaSection
-        {
-            background-color: #2F5F3E;
-            border-radius: 8px;
-            padding: 60px 30px;
-            text-align: center;
-            color: #fff;
-        }
-
-        .ctaSection h2
-        {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-
-        .ctaSection p
-        {
-            font-size: 16px;
-            color: #d7e4dc;
-            margin-bottom: 28px;
-        }
-
-        .btn
-        {
-            display: inline-block;
-            background-color: #fff;
-            color: #2F5F3E;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 14px 34px;
-            border-radius: 6px;
-            transition: opacity 0.25s ease;
-        }
-
-        .btn:hover
-        {
-            opacity: 0.85;
-        }
-
-        /* ============================
-           FOOTER
-        ============================ */
-        .siteFooter
-        {
-            background-color: #1F2933;
-            color: #cbd2d9;
-            padding: 50px 20px 25px;
-            margin-top: 100px;
-        }
-
-        .footerInner
-        {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #323f4b;
-        }
-
-        .footerBrand h3
-        {
-            color: #fff;
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .footerBrand p
-        {
-            font-size: 14px;
-            max-width: 280px;
-        }
-
-        .footerLinks
-        {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
-
-        .footerLinks a
-        {
-            color: #cbd2d9;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        .footerLinks a:hover
-        {
-            color: #fff;
-        }
-
-        .footerSocial
-        {
-            display: flex;
-            gap: 18px;
-        }
-
-        .footerSocial a
-        {
-            color: #cbd2d9;
-            text-decoration: none;
-            font-size: 14px;
-            border: 1px solid #323f4b;
-            padding: 8px 14px;
-            border-radius: 6px;
-        }
-
-        .footerSocial a:hover
-        {
-            color: #fff;
-            border-color: #52606D;
-        }
-
-        .footerBottom
-        {
-            max-width: 1200px;
-            margin: 20px auto 0;
-            text-align: center;
-            font-size: 13px;
-            color: #7b8794;
-        }
-
-        /* ============================
-           RESPONSIVE
-        ============================ */
-        @media (max-width: 900px)
-        {
-            .bioSection { flex-direction: column; text-align: center; }
-            .skillsGrid { grid-template-columns: repeat(2, 1fr); }
-            .projectsGrid { grid-template-columns: 1fr; }
-            .processGrid { grid-template-columns: repeat(2, 1fr); }
-            .footerInner { flex-direction: column; }
-        }
     </style>
 
 </head>
+
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="container">
 
-                <a href="index.html" class="logo">
-                    My Portfolio
-                </a>
+<header>
 
-                <ul class="navLinks">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="project.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+    <nav>
 
-            </div>
-        </nav>
-    </header>
-    <main>
+        <a href="index.html" class="logo">
+            Subham Ghimire
+        </a>
 
-        <!-- HERO / ABOUT -->
-        <section class="pageHeader">
-            <h1>SUBHAM GHIMIRE</h1>
-            <p style="letter-spacing: 2px; color: #2F5F3E; font-weight: 600; margin-bottom: 40px; text-transform: uppercase;">Web Developer & UI/UX Designer</p>
+        <ul class="navLinks">
+            <li><a href="index.html" class="active">Overview</a></li>
+            <li><a href="project.html">My Works</a></li>
+            <li><a href="contact.html">About Me</a></li>
+        </ul>
 
-            <div class="contentArea">
-                <div class="bioSection">
-                    <div class="profileImg">
-                        <img src="https://cdn.vectorstock.com/i/500p/71/90/blank-avatar-placeholder-icon-vector-30257190.jpg" alt="Profile Image">
-                    </div>
-                    <div style="flex: 1; text-align: left;">
-                        <p>I am a designer and developer focused on UI/UX. My work connects ethical production with modern consumers. With experience in design and web development, I ensure products meet strict environmental standards. I believe commerce should be high quality without harming the earth.</p>
-                        <br>
-                        <p>Our mission is to bridge the gap between high-quality consumer goods and sustainable manufacturing practices.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </nav>
 
-        <!-- SKILLS / SERVICES -->
-        <section class="skillsSection">
-            <span class="sectionLabel">What I Do</span>
-            <h2 class="sectionTitle">Skills & Services</h2>
+</header>
 
-            <div class="skillsGrid">
-                <div class="skillCard">
-                    <h3>UI/UX Design</h3>
-                    <p>Wireframes, prototypes, and user flows built around real user research, not guesswork.</p>
-                </div>
-                <div class="skillCard">
-                    <h3>Web Development</h3>
-                    <p>Clean, semantic HTML and CSS turned into fast, accessible, responsive websites.</p>
-                </div>
-                <div class="skillCard">
-                    <h3>Brand Identity</h3>
-                    <p>Logos, colour systems, and typography that give a brand a consistent visual voice.</p>
-                </div>
-                <div class="skillCard">
-                    <h3>Sustainable Strategy</h3>
-                    <p>Digital strategy that keeps ethical sourcing and sustainability at the centre of every decision.</p>
-                </div>
-            </div>
-        </section>
+<main>
 
-        <!-- FEATURED PROJECTS -->
-        <section class="projectsSection">
-            <span class="sectionLabel">Selected Work</span>
-            <h2 class="sectionTitle">Featured Projects</h2>
+    <section class="pageHeader">
 
-            <div class="projectsGrid">
-                
-                <a href="daraz.jpg" class="projectCard">
-                    <img src="daraz.jpg">
-                    <div class="projectCardBody">
-                        <span class="projectTag">UI/UX Design</span>
-                        <h3>Daraz.com.np Redesigned</h3>
-                        <p>A complete redesign of the Daraz.com.np e-commerce platform to improve user experience and increase conversions.</p>
-                    </div>
-                </a>
-                <a href="https://subghimire40.github.io/ecoMart/" class="projectCard">
-                    <img src="ecomart.jpg" alt="EcoMart website project thumbnail">
-                    <div class="projectCardBody">
-                        <span class="projectTag">Web Development</span>
-                        <h3>EcoMart</h3>
-                        <p>An e-commerce website for a sustainable living brand.</p>
-                    </div>
-                </a>
-            </div>
-        </section>
+        <div class="heroContent">
 
-        <!-- PROCESS -->
-        <section class="processSection">
-            <span class="sectionLabel">How I Work</span>
-            <h2 class="sectionTitle">My Process</h2>
+            <p class="roleLine">
+                Web Developer & UI/UX Designer
+            </p>
 
-            <div class="processGrid">
-                <div class="processStep">
-                    <div class="processNumber">1</div>
-                    <h3>Discover</h3>
-                    <p>Understanding the goals, audience, and constraints behind the project.</p>
-                </div>
-                <div class="processStep">
-                    <div class="processNumber">2</div>
-                    <h3>Design</h3>
-                    <p>Sketching, wireframing, and refining ideas into a clear visual direction.</p>
-                </div>
-                <div class="processStep">
-                    <div class="processNumber">3</div>
-                    <h3>Develop</h3>
-                    <p>Building the interface with clean, maintainable code.</p>
-                </div>
-                <div class="processStep">
-                    <div class="processNumber">4</div>
-                    <h3>Deliver</h3>
-                    <p>Testing, refining, and handing off a polished final product.</p>
-                </div>
-            </div>
-        </section>
+            <h1>
+                SUBHAM<br>
+                GHIMIRE
+            </h1>
 
-        <!-- TESTIMONIAL -->
-        <section class="testimonialSection">
-            <span class="sectionLabel">Feedback</span>
-            <h2 class="sectionTitle">What Clients Say</h2>
+            <p class="tagline">
+                I design and build digital experiences that treat sustainability as a constraint, not a caption.
+            </p>
 
-            <div class="testimonialCard">
-                <p>"lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                <p class="testimonialAuthor"><strong>John Doe</strong> — Founder & CEO, EcoMart</p>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="ctaSection">
-            <h2>Let's build something together</h2>
-            <p>Have a project in mind? I'd love to hear about it.</p>
-            <a href="contact.html" class="btn">Get in Touch</a>
-        </section>
-
-    </main>
-
-    <footer class="siteFooter">
-        <div class="footerInner">
-            <div class="footerBrand">
-                <h3>My Portfolio</h3>
-                <p>Web development and UI/UX design focused on clean, sustainable digital products.</p>
-            </div>
-
-            <ul class="footerLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="project.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <div class="footerSocial">
-                <a href="https://www.linkedin.com/in/subham-ghimire/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/subghimire40" target="_blank">GitHub</a>
-                <a href="https://www.instagram.com/6040_subham/" target="_blank">Instagram</a>
-            </div>
         </div>
-        <p class="footerBottom">&copy; 2026 Subham Ghimire. All rights reserved.</p>
-    </footer>
+
+    </section>
+
+</main>
+
 </body>
 </html>

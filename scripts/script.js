@@ -4,10 +4,16 @@ var heroSection = document.getElementById('hero');
 var worksLink = document.getElementById('worksLink');
 var workSection = document.getElementById('work');
 
-if (overviewLink && heroSection) {
-    window.addEventListener('scroll', function() {
-        var heroBottom = heroSection.getBoundingClientRect().bottom;
-        if (heroBottom <= window.innerHeight / 2) {
+var aboutSection = document.getElementById('about');
+
+if (overviewLink && aboutSection) {
+    window.addEventListener('scroll', function () {
+        var aboutRect = aboutSection.getBoundingClientRect();
+
+        if (
+            aboutRect.top <= window.innerHeight / 2 &&
+            aboutRect.bottom >= window.innerHeight / 2
+        ) {
             overviewLink.classList.add('active');
         } else {
             overviewLink.classList.remove('active');

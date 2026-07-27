@@ -369,6 +369,11 @@ body.dark-mode .darkModeToggle img{
     filter:invert(1);
 }
 
+/* light.svg reads smaller than dark.svg at the same box size — scale it up */
+body.dark-mode .darkModeToggle img{
+    transform:scale(1.25);
+}
+
 /* scrollDown circle is hardcoded white — swap it so the (now white) icon is visible */
 body.dark-mode .scrollDown{
     background:#1F2933;

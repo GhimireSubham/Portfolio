@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Subham Ghimire</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+
+        /* Shared full-viewport section shell (mirrors index.html) */
+        .fullSection{
+            position:relative;
+            min-height:calc(100vh - 96px);
+            scroll-margin-top:96px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+
+        .centerBlock{
+            align-items:center;
+            text-align:center;
+        }
+
+        .sectionIntro{
+            align-self:center;
+            margin-bottom:clamp(32px, 5vw, 56px);
+            text-align:center;
+        }
+
+        .eyebrow{
+            margin-bottom:20px;
+            font-size:14px;
+            font-weight:500;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            color:var(--color-text);
+            text-align:center;
+        }
+
+        .serifHeading{
+            font-family:"Playfair Display", serif;
+            font-weight:700;
+            line-height:1.15;
+            letter-spacing:-1px;
+            text-align:center;
+        }
+
+        .bodyText{
+            font-size:17px;
+            line-height:1.9;
+            color:var(--color-muted);
+            text-align:justify;
+        }
+
+        @media (max-width:900px){
+            .fullSection{
+                min-height:calc(100vh - 160px);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+
+        <a href="../index.html" class="homeButton">
+            <img src="../assets/home.svg" alt="Home" width="18" height="18">
+        </a>
+
+        <ul class="navLinks">
+            <li><a href="../index.html#about">Overview</a></li>
+            <li><a href="project.html" id="worksLink">My Works</a></li>
+            <li><a href="contact.html" class="active">About Me</a></li>
+        </ul>
+
+        <button class="darkModeToggle" id="darkModeToggle" aria-label="Toggle dark mode">
+            <img src="../assets/dark.svg" alt="Toggle dark mode" width="18" height="18" data-dark="../assets/dark.svg" data-light="../assets/light.svg">
+        </button>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <!-- ===================================
+         CONTACT — full viewport
+    =================================== -->
+
+    <section id="contact" class="fullSection centerBlock" style="padding:96px 24px;">
+
+        <div class="sectionIntro">
+
+            <p class="eyebrow">
+                Get In Touch
+            </p>
+
+            <h1 class="serifHeading" style="width:min(680px, 100%); margin:0 auto; font-size:clamp(36px, 5vw, 64px);">
+                Let's talk about your next project.
+            </h1>
+
+            <p class="bodyText" style="width:min(560px, 100%); margin:20px auto 0; text-align:center;">
+                Whether it's a design problem, a build, or just an idea worth
+                sketching out &mdash; my inbox is open.
+            </p>
+
+        </div>
+
+        <p class="bodyText" style="width:min(400px, 100%); margin:8px auto 0; text-align:center; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--color-muted);">
+            Based in Kathmandu, Nepal
+        </p>
+
+        <div class="socialRow" style="margin:36px 0 0;">
+
+            <a href="mailto:subham.ghimire42297@gmail.com" class="iconButton" aria-label="Email">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/subhamghimire/" target="_blank" rel="noopener" class="iconButton" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="3"/>
+                    <circle cx="7" cy="7.5" r="1"/>
+                    <path d="M7 10.5V17"/>
+                    <path d="M11 17v-4a2 2 0 0 1 4 0v4"/>
+                    <path d="M11 10.5V17"/>
+                </svg>
+            </a>
+
+            <a href="https://github.com/subghimire40" target="_blank" rel="noopener" class="iconButton" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>
+                </svg>
+            </a>
+
+            <a href="https://wa.me/9779844129198" target="_blank" rel="noopener" class="iconButton" aria-label="WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                </svg>
+            </a>
+
+            <a href="https://instagram.com/subhamghimire" target="_blank" rel="noopener" class="iconButton" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+            </a>
+
+        </div>
+
+        <button class="scrollDown scrollCta" data-target="#message-form" aria-label="Send a quick message" style="position:absolute; left:50%; bottom:40px;">
+            <span>Send a quick message</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </button>
+
+    </section>
+
+    <!-- ===================================
+         MESSAGE FORM — full viewport
+    =================================== -->
+
+    <section id="message-form" class="fullSection centerBlock" style="padding:96px 24px;">
+
+        <div class="sectionIntro">
+
+            <p class="eyebrow">
+                Send a Message
+            </p>
+
+            <h2 class="serifHeading" style="font-size:clamp(30px, 4vw, 48px);">
+                Drop me a line.
+            </h2>
+
+        </div>
+
+        <form action="mailto:hello@subhamghimire.com" method="post" enctype="text/plain" style="width:min(560px, 100%); display:flex; flex-direction:column; gap:28px;">
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:28px;">
+
+                <div class="formField">
+                    <label class="formLabel" for="contactName">Name</label>
+                    <input class="formInput" type="text" id="contactName" name="name" placeholder="Your name" required>
+                </div>
+
+                <div class="formField">
+                    <label class="formLabel" for="contactEmail">Email</label>
+                    <input class="formInput" type="email" id="contactEmail" name="email" placeholder="you@email.com" required>
+                </div>
+
+            </div>
+
+            <div class="formField">
+                <label class="formLabel" for="contactMessage">Message</label>
+                <textarea class="formTextarea" id="contactMessage" name="message" rows="8" placeholder="Tell me a bit about your project..." required></textarea>
+            </div>
+
+            <button type="submit" class="ctaButton" style="align-self:center; margin-top:12px; padding:18px 48px;">
+                Submit
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+<script src="../scripts/script.js" defer></script>
+
+</body>
+</html>

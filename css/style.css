@@ -238,6 +238,35 @@ img{
     50%{ transform:translate(-50%,8px); }
 }
 
+/* Pill variant of .scrollDown — used for text + icon CTAs like
+   "Send a quick message". Reuses scrollDown's positioning and
+   click-to-scroll JS, but the constant bounce makes a wide pill
+   an unstable click target (mousedown/mouseup can land in different
+   spots as it shifts), so the animation is turned off here and
+   swapped for a hover-lift instead. */
+.scrollCta{
+    width:auto;
+    height:auto;
+    padding:14px 28px;
+    gap:10px;
+
+    border-radius:999px;
+
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    white-space:nowrap;
+
+    animation:none;
+    transform:translate(-50%, 0);
+    transition:border-color .3s ease, color .3s ease, background-color .3s ease, transform .3s ease;
+}
+
+.scrollCta:hover{
+    transform:translate(-50%, -4px);
+}
+
 /* ===================================
    SELECTED WORK — cards & preview shots
    Kept external only for the :hover states
@@ -278,7 +307,14 @@ img{
 
 .ctaButton{
     border:1px solid var(--color-accent); 
+    background:transparent;
     color:var(--color-accent);
+    font:inherit;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    cursor:pointer;
     transition:background-color .3s ease, color .3s ease, border-color .5s ease;
 
 }
@@ -286,6 +322,102 @@ img{
 .ctaButton:hover{
     background:#1F2933;
     color: #fff;
+}
+
+/* ===================================
+   SOCIAL ICON ROW — Contact page
+=================================== */
+
+.socialRow{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px;
+}
+
+.iconButton{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:none;
+    background:#fff;
+    color:var(--color-text);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    text-decoration:none;
+
+    box-shadow:0 4px 12px rgba(0, 0, 0, 0.12);
+    transition:border-color .3s ease, color .3s ease, background-color .3s ease, transform .3s ease;
+}
+
+.iconButton:hover{
+    background:var(--color-accent);
+    color:var(--color-bg);
+    transform:translateY(-3px);
+}
+
+.iconButton:focus-visible{
+    outline:2px solid var(--color-accent);
+    outline-offset:3px;
+}
+
+body.dark-mode .iconButton{
+    background:#1F2933;
+    box-shadow:0 4px 12px rgba(255, 255, 255, 0.12);
+}
+
+/* ===================================
+   CONTACT FORM
+=================================== */
+
+.formField{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    text-align:left;
+}
+
+.formLabel{
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--color-muted);
+}
+
+.formInput,
+.formTextarea{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid color-mix(in srgb, var(--color-muted) 40%, transparent);
+    padding:10px 2px;
+
+    font-family:inherit;
+    font-size:16px;
+    color:var(--color-text);
+
+    outline:none;
+    transition:border-color .3s ease;
+}
+
+.formTextarea{
+    resize:vertical;
+    line-height:1.7;
+}
+
+.formInput:focus,
+.formTextarea:focus{
+    border-color:var(--color-accent);
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder{
+    color:var(--color-muted);
+    opacity:.6;
 }
 
 /* ===================================

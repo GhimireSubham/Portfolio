@@ -74,6 +74,410 @@
 
         }
 
+        /* ===================================
+           SHARED SECTION HELPERS
+        =================================== */
+
+        .eyebrow{
+            margin-bottom:20px;
+
+            font-size:14px;
+            font-weight:500;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            color:var(--color-text);
+
+            transition:color .5s ease;
+        }
+
+        /* ===================================
+           ABOUT
+        =================================== */
+
+        .about{
+            padding:160px 0;
+
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:80px;
+        }
+
+        .about h2{
+            font-family:"Playfair Display", serif;
+            font-size:56px;
+            font-weight:700;
+            line-height:1.15;
+            letter-spacing:-1px;
+        }
+
+        .aboutBody p{
+            margin-bottom:24px;
+
+            font-size:17px;
+            line-height:1.9;
+            color:var(--color-muted);
+
+            transition:color .5s ease;
+        }
+
+        .aboutBody p:last-of-type{
+            margin-bottom:40px;
+        }
+
+        .factList{
+            list-style:none;
+        }
+
+        .factList li{
+            padding:14px 0;
+
+            display:flex;
+            justify-content:space-between;
+            gap:24px;
+
+            font-size:14px;
+        }
+
+        .factList .factLabel{
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:var(--color-muted);
+            white-space:nowrap;
+
+            transition:color .5s ease;
+        }
+
+        .factList .factValue{
+            text-align:right;
+            color:var(--color-text);
+
+            transition:color .5s ease;
+        }
+
+        @media (max-width:900px){
+
+            .about{
+                padding:96px 0;
+
+                grid-template-columns:1fr;
+                gap:40px;
+            }
+
+            .about h2{
+                font-size:36px;
+            }
+
+        }
+
+        /* ===================================
+           STRENGTHS
+        =================================== */
+
+        .strengths{
+            padding-bottom:160px;
+        }
+
+        .strengths h2{
+            margin-bottom:48px;
+
+            font-family:"Playfair Display", serif;
+            font-size:40px;
+            font-weight:700;
+            letter-spacing:-.5px;
+        }
+
+        .chipGrid{
+            display:flex;
+            flex-wrap:wrap;
+            gap:14px;
+        }
+
+        .chip{
+            padding:12px 22px;
+
+            background:color-mix(in srgb, var(--color-text) 10%, transparent);
+            border-radius:999px;
+
+            font-size:13px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+
+            transition:background-color .5s ease;
+        }
+
+        @media (max-width:900px){
+
+            .strengths{
+                padding-bottom:96px;
+            }
+
+            .strengths h2{
+                font-size:30px;
+            }
+
+        }
+
+        /* ===================================
+           SELECTED WORK
+        =================================== */
+
+        .work{
+            padding:160px 0;
+        }
+
+        .work > .eyebrow{
+            margin-bottom:0;
+        }
+
+        .workIntro{
+            margin:20px 0 64px;
+
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-end;
+            gap:40px;
+        }
+
+        .work h2{
+            max-width:520px;
+
+            font-family:"Playfair Display", serif;
+            font-size:48px;
+            font-weight:700;
+            line-height:1.2;
+            letter-spacing:-1px;
+        }
+
+        .workNote{
+            max-width:320px;
+
+            font-size:15px;
+            line-height:1.8;
+            color:var(--color-muted);
+
+            transition:color .5s ease;
+        }
+
+        .workGrid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:40px;
+        }
+
+        .workCard{
+            padding:44px 36px;
+
+            display:flex;
+            flex-direction:column;
+
+            transition:background-color .4s ease;
+        }
+
+        .workCard:hover{
+            background:color-mix(in srgb, var(--color-surface) 35%, transparent);
+        }
+
+        .workTag{
+            margin-bottom:24px;
+
+            font-size:12px;
+            font-weight:500;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:var(--color-muted);
+
+            transition:color .5s ease;
+        }
+
+        .workCard h3{
+            margin-bottom:16px;
+
+            font-family:"Playfair Display", serif;
+            font-size:26px;
+            font-weight:700;
+        }
+
+        .workCard p{
+            margin-bottom:32px;
+
+            font-size:15px;
+            line-height:1.8;
+            color:var(--color-muted);
+
+            transition:color .5s ease;
+        }
+
+        .workLink{
+            margin-top:auto;
+
+            color:var(--color-text);
+            text-decoration:none;
+
+            font-size:12px;
+            font-weight:500;
+            letter-spacing:2px;
+            text-transform:uppercase;
+
+            transition:color .3s ease;
+        }
+
+        .workLink:hover{
+            color:var(--color-accent);
+        }
+
+        @media (max-width:900px){
+
+            .work{
+                padding:96px 0;
+            }
+
+            .workIntro{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:20px;
+            }
+
+            .work h2{
+                font-size:34px;
+            }
+
+            .workGrid{
+                grid-template-columns:1fr;
+            }
+
+        }
+
+        /* ===================================
+           CONTACT CTA
+        =================================== */
+
+        .contactCta{
+            height:calc(100vh - 96px);
+
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+
+            text-align:center;
+        }
+
+        .contactCta .eyebrow{
+            display:block;
+        }
+
+        .contactCta h2{
+            width:640px;
+            margin:0 auto 40px;
+
+            font-family:"Playfair Display", serif;
+            font-size:56px;
+            font-weight:700;
+            line-height:1.15;
+            letter-spacing:-1px;
+        }
+
+        .ctaButton{
+            display:inline-block;
+            padding:18px 40px;
+
+            border:1px solid var(--color-accent);
+
+            color:var(--color-accent);
+            text-decoration:none;
+
+            font-size:13px;
+            font-weight:500;
+            letter-spacing:2px;
+            text-transform:uppercase;
+
+            transition:background-color .3s ease, color .3s ease, border-color .5s ease;
+        }
+
+        .ctaButton:hover{
+            background:var(--color-accent);
+            color:var(--color-bg);
+        }
+
+        @media (max-width:900px){
+
+            .contactCta{
+                height:auto;
+                padding:96px 0;
+            }
+
+            .contactCta h2{
+                width:100%;
+
+                font-size:34px;
+            }
+
+        }
+
+        /* ===================================
+           FOOTER
+        =================================== */
+
+        .siteFooter{
+            padding:48px 0;
+
+            background:color-mix(in srgb, var(--color-surface) 25%, transparent);
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:24px;
+
+            transition:background-color .5s ease;
+        }
+
+        .siteFooter .logo{
+            font-size:16px;
+        }
+
+        .footerLinks{
+            display:flex;
+            gap:32px;
+
+            list-style:none;
+        }
+
+        .footerLinks a{
+            color:var(--color-text);
+            text-decoration:none;
+
+            font-size:12px;
+            letter-spacing:2px;
+            text-transform:uppercase;
+
+            transition:color .3s ease;
+        }
+
+        .footerLinks a:hover{
+            color:var(--color-accent);
+        }
+
+        .footerNote{
+            font-size:12px;
+            color:var(--color-muted);
+
+            transition:color .5s ease;
+        }
+
+        @media (max-width:900px){
+
+            .siteFooter{
+                flex-direction:column;
+                text-align:center;
+            }
+
+            .footerLinks{
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+
+        }
+
     </style>
 
 </head>
@@ -89,7 +493,7 @@
         </a>
 
         <ul class="navLinks">
-            <li><a href="index.html" class="active">Overview</a></li>
+            <li><a href="index.html" id="overviewLink">Overview</a></li>
             <li><a href="project.html">My Works</a></li>
             <li><a href="contact.html">About Me</a></li>
         </ul>
@@ -121,7 +525,157 @@
 
     </section>
 
+    <section class="about" id="about">
+
+        <div class="aboutIntro">
+
+            <p class="eyebrow">About</p>
+
+            <h2>
+                Where design<br>
+                meets development.
+            </h2>
+
+        </div>
+
+        <div class="aboutBody">
+
+            <p>
+                I'm an aspiring front-end web developer and UI/UX design enthusiast, currently pursuing a
+                B.Sc. (Hons) in Computing at Islington College, affiliated with London Metropolitan University.
+            </p>
+
+            <p>
+                My work sits at the intersection of design and development &mdash; I design interfaces for web
+                applications, build responsive sites with modern front-end technologies, and apply UI/UX
+                principles to make things people can actually use. I'm a lifelong learner, always exploring
+                where good design and solid engineering meet.
+            </p>
+
+            <ul class="factList">
+
+                <li>
+                    <span class="factLabel">Studying at</span>
+                    <span class="factValue">Islington College &mdash; London Metropolitan University</span>
+                </li>
+
+                <li>
+                    <span class="factLabel">Focus</span>
+                    <span class="factValue">Front-end Development &amp; UI/UX Design</span>
+                </li>
+
+                <li>
+                    <span class="factLabel">Interested in</span>
+                    <span class="factValue">Responsive Design, Wireframing &amp; Prototyping</span>
+                </li>
+
+                <li>
+                    <span class="factLabel">Currently exploring</span>
+                    <span class="factValue">User-centred, e-commerce &amp; accessible web experiences</span>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+    <section class="strengths">
+
+        <h2>Strengths &amp; areas of expertise</h2>
+
+        <div class="chipGrid">
+            <span class="chip">Front-end Web Development</span>
+            <span class="chip">UI/UX Design</span>
+            <span class="chip">Responsive Web Design</span>
+            <span class="chip">Wireframing &amp; Prototyping</span>
+            <span class="chip">Graphic Design Fundamentals</span>
+            <span class="chip">Visual Communication</span>
+            <span class="chip">Problem-solving</span>
+            <span class="chip">Adaptability</span>
+        </div>
+
+    </section>
+
+    <section class="work" id="work">
+
+        <p class="eyebrow">Selected Work</p>
+
+        <div class="workIntro">
+
+            <h2>A curated look at how I think through design and code.</h2>
+
+            <p class="workNote">
+                A mix of academic and personal projects, showing both the design process
+                and the implementation behind it.
+            </p>
+
+        </div>
+
+        <div class="workGrid">
+
+            <article class="workCard workCard--daraz">
+
+                <p class="workTag">UI Redesign &middot; Case Study</p>
+
+                <h3>Daraz.com.np Redesign</h3>
+
+                <p>
+                    A UI redesign case study of Daraz.com.np, focused on improving usability
+                    and visual clarity for one of Nepal's largest e-commerce platforms.
+                </p>
+
+                <a href="project.html" class="workLink">View Project &rarr;</a>
+
+            </article>
+
+            <article class="workCard workCard--ecomart">
+
+                <p class="workTag">E-commerce &middot; College Coursework</p>
+
+                <h3>EcoMart</h3>
+
+                <p>
+                    EcoMart is an e-commerce platform developed as college coursework, built
+                    to explore real-world front-end development for online retail.
+                </p>
+
+                <a href="project.html" class="workLink">View Project &rarr;</a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <section class="contactCta" id="contact">
+
+        <p class="eyebrow">Get In Touch</p>
+
+        <h2>Let's build something worth using.</h2>
+
+        <a href="contact.html" class="ctaButton">About Me &amp; Contact</a>
+
+    </section>
+
 </main>
+
+<footer class="siteFooter">
+
+    <span class="logo">Subham Ghimire</span>
+
+    <ul class="footerLinks">
+        <!-- TODO: replace with real links -->
+        <li><a href="mailto:hello@example.com">Email</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">GitHub</a></li>
+    </ul>
+
+    <span class="footerNote">&copy; 2026 Subham Ghimire</span>
+
+</footer>
+
+<script src="script.js" defer></script>
 
 </body>
 </html>

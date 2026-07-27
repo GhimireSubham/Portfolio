@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&family=Playfair+Display:wght@400..900&display=swap');
 
 /* ===================================
+   THEME TOKENS
+
+   --color-bg      60% — dominant surface
+   --color-surface 30% — secondary surface
+   --color-accent  10% — complementary / highlight
+=================================== */
+
+:root{
+    --color-bg:#FFFFFF;
+    --color-surface:#F5F3EE;
+    --color-text:#1F2933;
+    --color-muted:#52606D;
+    --color-accent:#1F2933;
+}
+
+/* ===================================
    RESET
 =================================== */
 
@@ -15,9 +31,11 @@ html{
 }
 
 body{
-    background:#FFFFFF;
-    color:#1F2933;
+    background-color:var(--color-bg);
+    color:var(--color-text);
     font-family:"Josefin Sans", sans-serif;
+
+    transition:background-color .6s ease, color .6s ease;
 }
 
 /* ===================================
@@ -42,10 +60,8 @@ header{
     width:100%;
     height:96px;
 
-    background:rgba(255,255,255,0.85);
+    background:rgba(255,255,255,0);
 
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
 }
 
 /* ===================================
@@ -71,11 +87,13 @@ nav{
 .logo{
     text-decoration:none;
 
-    color:#1F2933;
+    color:var(--color-text);
 
     font-family:"Playfair Display", serif;
     font-size:20px;
     font-weight:700;
+
+    transition:color .5s ease;
 }
 
 /* ===================================
@@ -90,7 +108,7 @@ nav{
 }
 
 .navLinks a{
-    color:#1F2933;
+    color:var(--color-text);
 
     text-decoration:none;
 
@@ -99,16 +117,18 @@ nav{
     letter-spacing:2px;
     text-transform:uppercase;
 
-    transition:opacity .25s;
+    opacity:.55;
+    transition:opacity .25s, color .5s ease;
 }
 
 .navLinks a:hover{
-    opacity:.65;
+    opacity:1;
 }
 
 .navLinks a.active{
-    border-bottom:2px solid #1F2933;
-    padding-bottom:6px;
+    opacity:1;
+    color:var(--color-accent);
+    font-weight:600;
 }
 
 /* ===================================
@@ -142,4 +162,29 @@ img{
         max-width:calc(100% - 40px);
     }
 
+}
+
+/* ===================================
+   THEME VARIANTS
+
+   Triggered on <body> by script.js when
+   hovering a Selected Work card. Values
+   follow the 60/30/10 UI color rule:
+   dominant / secondary / accent.
+=================================== */
+
+body.theme-daraz{
+    --color-bg:#F08033;
+    --color-surface:#F4A968;
+    --color-text:#FFFFFF;
+    --color-muted:rgba(255,255,255,.75);
+    --color-accent:#FFFFFF;
+}
+
+body.theme-ecomart{
+    --color-bg:#2E7D32;
+    --color-surface:#A4D039;
+    --color-text:#FFFFFF;
+    --color-muted:rgba(255,255,255,.8);
+    --color-accent:#3ACEFF;
 }

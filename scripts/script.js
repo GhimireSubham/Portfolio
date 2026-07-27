@@ -44,7 +44,7 @@ darkModeToggle.addEventListener('click', function() {
     document.body.classList.toggle('dark-mode');
     var isDark = document.body.classList.contains('dark-mode');
 
-    darkModeToggleIcon.src = isDark ? 'light.svg' : 'dark.svg';
+    darkModeToggleIcon.src = isDark ? 'assets/light.svg' : 'assets/dark.svg';
     darkModeToggleIcon.alt = isDark ? 'Switch to light mode' : 'Switch to dark mode';
 });
 

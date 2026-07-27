@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&family=Playfair+Display:wght@400..900&display=swap');
+
+/* ===================================
+   THEME TOKENS
+
+   --color-bg      60% — dominant surface
+   --color-surface 30% — secondary surface
+   --color-accent  10% — complementary / highlight
+=================================== */
+
+:root{
+    --color-bg:#FFFFFF;
+    --color-surface:#F5F3EE;
+    --color-text:#1F2933;
+    --color-muted:#52606D;
+    --color-accent:#1F2933;
+}
+
+/* ===================================
+   RESET
+=================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background-color:var(--color-bg);
+    color:var(--color-text);
+    font-family:"Josefin Sans", sans-serif;
+
+    transition:background-color .6s ease, color .6s ease;
+}
+
+@media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+
+/* ===================================
+   GLOBAL LAYOUT
+=================================== */
+
+main{
+    width:1200px;
+    max-width:calc(100% - 64px);
+    margin:0 auto;
+}
+
+/* ===================================
+   HEADER  (external — kept untouched)
+=================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    height: 96px;
+
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(12.4px);
+    -webkit-backdrop-filter: blur(12.4px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    /* Smooth transition back to neutral */
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+nav{
+    position: relative;
+
+    padding:48px;
+    height:96px;
+    margin:0 auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.homeButton{
+    position:absolute;
+    left:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--color-text);
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:.65;
+
+    transition:opacity .25s;
+}
+
+.homeButton:hover{
+    opacity: 1;
+}
+
+/* ===================================
+   DARK MODE TOGGLE
+=================================== */
+
+.darkModeToggle{
+    position:absolute;
+    right:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:36px;
+    height:36px;
+
+    border:none;
+    border-radius:50%;
+    background:transparent;
+    cursor:pointer;
+
+    opacity:.65;
+    transition:opacity .25s, background-color .25s ease;
+}
+
+.darkModeToggle:hover{
+    opacity:1;
+    background:color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.darkModeToggle:focus-visible{
+    outline:2px solid var(--color-accent);
+    outline-offset:3px;
+}
+
+
+.navLinks{
+    display:flex;
+    gap:36px;
+    list-style:none;
+}
+
+.navLinks a{
+    color:var(--color-text);
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:400;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    opacity:.55;
+    transition:opacity .25s, color .5s ease;
+}
+
+.navLinks a:hover{
+    opacity:1;
+}
+
+.navLinks a.active{
+    opacity:1;
+    color:var(--color-accent);
+    font-weight:600;
+}
+
+@media (max-width:900px){
+    header{ height:auto; }
+
+    nav{
+        height:auto;
+        padding:24px 0;
+
+        flex-direction:column;
+        gap:24px;
+    }
+
+    main{ max-width:calc(100% - 40px); }
+}
+
+/* ===================================
+   IMAGES
+=================================== */
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+/* ===================================
+   SCROLL-DOWN CUE
+   Needs :hover / :focus-visible / keyframes,
+   so it stays here rather than inline.
+=================================== */
+
+.scrollDown{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:none;
+    background:#fff;
+    color:var(--color-text);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    animation:bounceDown 2.4s ease-in-out infinite;
+    transition:border-color .3s ease, color .3s ease, background-color .3s ease;
+}
+
+.scrollDown:hover{
+    border-color:var(--color-accent);
+    background:var(--color-accent);
+    color:var(--color-bg);
+    animation-play-state:paused;
+}
+
+.scrollDown:focus-visible{
+    outline:2px solid var(--color-accent);
+    outline-offset:3px;
+}
+
+@keyframes bounceDown{
+    0%,100%{ transform:translate(-50%,0); }
+    50%{ transform:translate(-50%,8px); }
+}
+
+/* ===================================
+   SELECTED WORK — cards & preview shots
+   Kept external only for the :hover states
+   (base layout/spacing is inlined in HTML).
+=================================== */
+
+.workCard{
+    transition:background-color .4s ease, transform .35s ease;
+}
+
+.workCard:hover{
+    background:transparent;
+    transform:translateY(-4px);
+}
+
+.workLink{
+    transition:color .3s ease;
+}
+
+.workLink:hover{
+    color:var(--color-accent);
+}
+
+.projectShot{
+    transition:transform .5s ease, box-shadow .5s ease;
+    box-shadow:0 1px 2px color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+
+.workCard:hover .projectShot{
+    transform:translateY(-2px) scale(1.015);
+    box-shadow:0 18px 34px -14px color-mix(in srgb, var(--color-text) 30%, transparent);
+}
+
+
+/* ===================================
+   CONTACT CTA — kept external for :hover
+=================================== */
+
+.ctaButton{
+    border:1px solid var(--color-accent); 
+    color:var(--color-accent);
+    transition:background-color .3s ease, color .3s ease, border-color .5s ease;
+
+}
+
+.ctaButton:hover{
+    background:#1F2933;
+    color: #fff;
+}
+
+/* ===================================
+   FOOTER  (external — kept untouched)
+=================================== */
+
+
+@media (max-width:900px){
+    .siteFooter{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .footerLinks{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+}
+
+/* ===================================
+   THEME VARIANTS
+
+   Triggered on <body> by script.js when
+   hovering a Selected Work card. Values
+   echo each project's own screenshot —
+   Daraz's orange marketplace look and
+   EcoMart's earthy sustainable-green look —
+   following the 60/30/10 UI color rule.
+=================================== */
+
+/* Daraz Theme */
+body.theme-daraz {
+    --color-bg: #F1F1F2;
+    --color-text: #1F2933;
+    --color-muted: #52606D;
+    --color-accent: #fff;
+}
+
+body.theme-daraz header {
+    background-color: #F08033;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: transparent;
+    transition: background-color 0.4s ease;
+}
+
+/* EcoMart Theme */
+body.theme-ecomart {
+    --color-bg: #eef6f1;
+    --color-surface: #A4D039;
+    --color-accent: #2F6F3E;
+}
+
+body.theme-ecomart header {
+    background-color: #FAFAF8;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: transparent;
+    transition: background-color 0.4s ease;
+}
+
+/* ===================================
+   DARK MODE
+
+   Background uses the same color as the
+   hero heading text (--color-text default,
+   #1F2933) rather than pure black. All
+   text becomes pure white.
+=================================== */
+
+body.dark-mode{
+    --color-bg:#1F2933;
+    --color-text:#fff;
+    --color-muted:#fff;
+    --color-accent:#fff;
+}
+
+/* Icons assumed dark by default — invert to read on the dark surface */
+body.dark-mode .homeButton img,
+body.dark-mode .darkModeToggle img{
+    filter:invert(1);
+}
+
+/* scrollDown circle is hardcoded white — swap it so the (now white) icon is visible */
+body.dark-mode .scrollDown{
+    background:#1F2933;
+    box-shadow:0 4px 12px rgba(255, 255, 255, 0.12);
+}
+
+body.dark-mode .scrollDown:hover{
+    box-shadow:0 4px 12px rgba(255, 255, 255, 0.18);
+}
+
+/* ctaButton hover is hardcoded to the light-mode accent — invert for dark mode */
+body.dark-mode .ctaButton:hover{
+    background:#fff;
+    color:#1F2933;
+}
+
+/* ===================================
+   DARK MODE + WORK-CARD HOVER THEMES
+
+   Daraz/EcoMart normally swap --color-bg
+   to a light surface on hover, which would
+   fight dark mode's white-on-dark text.
+   In dark mode, keep the dark surface and
+   just tint the header with the project's
+   brand color instead.
+=================================== */
+
+body.dark-mode.theme-daraz{
+    --color-bg:#1F2933;
+    --color-text:#fff;
+    --color-muted:#fff;
+    --color-accent:#fff;
+}
+
+body.dark-mode.theme-daraz header{
+    background-color:#F08033;
+}
+
+body.dark-mode.theme-ecomart{
+    --color-bg:#1F2933;
+    --color-surface:#A4D039;
+    --color-text:#fff;
+    --color-muted:#fff;
+    --color-accent:#fff;
+}
+
+body.dark-mode.theme-ecomart header{
+    background-color:#2F6F3E;
+}

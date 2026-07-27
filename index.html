@@ -5,481 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subham Ghimire | Portfolio</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <style>
 
-        /* ===================================
-           HERO
-        =================================== */
-
-        .pageHeader{
-            height:calc(100vh - 96px);
-
+        /* Shared full-viewport section shell (Hero / About / Work / Contact) */
+        .fullSection{
+            position:relative;
+            min-height:calc(100vh - 96px);
+            scroll-margin-top:96px;
             display:flex;
+            flex-direction:column;
             justify-content:center;
-            align-items:center;
+        }
 
+        /* Centers content — used on Hero & Contact */
+        .centerBlock{
+            align-items:center;
             text-align:center;
         }
 
-        .heroContent{
-            width:760px;
+        /* Centered eyebrow + heading intro block — used on About / Work / Contact */
+        .sectionIntro{
+            align-self:center;
+            margin-bottom:clamp(32px, 5vw, 56px);
+            text-align:center;
         }
 
-        .roleLine{
-            margin-bottom:20px;
-
-            font-size:14px;
-            font-weight:500;
-            letter-spacing:3px;
-            text-transform:uppercase;
-        }
-
-        .pageHeader h1{
-            margin-bottom:28px;
-
-            font-family:"Playfair Display", serif;
-            font-size:148px;
-            font-weight:900;
-            line-height:136px;
-            letter-spacing:-4px;
-        }
-
-        .tagline{
-            width:620px;
-            margin:0 auto;
-
-            font-size:18px;
-            line-height:34px;
-        }
-
-        @media (max-width:900px){
-
-            .pageHeader{
-                height:auto;
-                padding:96px 0;
-            }
-
-            .heroContent,
-            .tagline{
-                width:100%;
-            }
-
-            .pageHeader h1{
-                font-size:72px;
-                line-height:72px;
-                letter-spacing:-2px;
-            }
-
-        }
-
-        /* ===================================
-           SHARED SECTION HELPERS
-        =================================== */
-
+        /* Small uppercase section label — Hero / About / Work / Contact */
         .eyebrow{
             margin-bottom:20px;
-
             font-size:14px;
             font-weight:500;
             letter-spacing:3px;
             text-transform:uppercase;
             color:var(--color-text);
-
-            transition:color .5s ease;
+            text-align:center;
         }
 
-        /* ===================================
-           ABOUT
-        =================================== */
-
-        .about{
-            padding:160px 0;
-
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:80px;
-        }
-
-        .about h2{
+        /* Serif section headings — About / Work / Contact */
+        .serifHeading{
             font-family:"Playfair Display", serif;
-            font-size:56px;
             font-weight:700;
             line-height:1.15;
             letter-spacing:-1px;
+            text-align:center;
         }
 
-        .aboutBody p{
-            margin-bottom:24px;
-
+        /* Muted body copy — About paragraphs */
+        .bodyText{
             font-size:17px;
             line-height:1.9;
             color:var(--color-muted);
-
-            transition:color .5s ease;
+            text-align:justify;
         }
 
-        .aboutBody p:last-of-type{
-            margin-bottom:40px;
-        }
-
-        .factList{
-            list-style:none;
-        }
-
-        .factList li{
-            padding:14px 0;
-
+        /* About "fact list" rows */
+        .factRow{
             display:flex;
             justify-content:space-between;
+            align-items:baseline;
             gap:24px;
-
-            font-size:14px;
+            padding:16px 0;
+            border-bottom:1px solid color-mix(in srgb, var(--color-muted) 25%, transparent);
         }
 
-        .factList .factLabel{
+        .factLabel{
+            font-size:13px;
             letter-spacing:2px;
             text-transform:uppercase;
             color:var(--color-muted);
             white-space:nowrap;
-
-            transition:color .5s ease;
-        }
-
-        .factList .factValue{
-            text-align:right;
-            color:var(--color-text);
-
-            transition:color .5s ease;
-        }
-
-        @media (max-width:900px){
-
-            .about{
-                padding:96px 0;
-
-                grid-template-columns:1fr;
-                gap:40px;
-            }
-
-            .about h2{
-                font-size:36px;
-            }
-
-        }
-
-        /* ===================================
-           STRENGTHS
-        =================================== */
-
-        .strengths{
-            padding-bottom:160px;
-        }
-
-        .strengths h2{
-            margin-bottom:48px;
-
-            font-family:"Playfair Display", serif;
-            font-size:40px;
-            font-weight:700;
-            letter-spacing:-.5px;
-        }
-
-        .chipGrid{
-            display:flex;
-            flex-wrap:wrap;
-            gap:14px;
-        }
-
-        .chip{
-            padding:12px 22px;
-
-            background:color-mix(in srgb, var(--color-text) 10%, transparent);
-            border-radius:999px;
-
-            font-size:13px;
-            letter-spacing:1px;
-            text-transform:uppercase;
-
-            transition:background-color .5s ease;
-        }
-
-        @media (max-width:900px){
-
-            .strengths{
-                padding-bottom:96px;
-            }
-
-            .strengths h2{
-                font-size:30px;
-            }
-
-        }
-
-        /* ===================================
-           SELECTED WORK
-        =================================== */
-
-        .work{
-            padding:160px 0;
-        }
-
-        .work > .eyebrow{
-            margin-bottom:0;
-        }
-
-        .workIntro{
-            margin:20px 0 64px;
-
-            display:flex;
-            justify-content:space-between;
-            align-items:flex-end;
-            gap:40px;
-        }
-
-        .work h2{
-            max-width:520px;
-
-            font-family:"Playfair Display", serif;
-            font-size:48px;
-            font-weight:700;
-            line-height:1.2;
-            letter-spacing:-1px;
-        }
-
-        .workNote{
-            max-width:320px;
-
-            font-size:15px;
-            line-height:1.8;
-            color:var(--color-muted);
-
-            transition:color .5s ease;
-        }
-
-        .workGrid{
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:40px;
-        }
-
-        .workCard{
-            padding:44px 36px;
-
-            display:flex;
-            flex-direction:column;
-
-            transition:background-color .4s ease;
-        }
-
-        .workCard:hover{
-            background:color-mix(in srgb, var(--color-surface) 35%, transparent);
-        }
-
-        .workTag{
-            margin-bottom:24px;
-
-            font-size:12px;
-            font-weight:500;
-            letter-spacing:2px;
-            text-transform:uppercase;
-            color:var(--color-muted);
-
-            transition:color .5s ease;
-        }
-
-        .workCard h3{
-            margin-bottom:16px;
-
-            font-family:"Playfair Display", serif;
-            font-size:26px;
-            font-weight:700;
-        }
-
-        .workCard p{
-            margin-bottom:32px;
-
-            font-size:15px;
-            line-height:1.8;
-            color:var(--color-muted);
-
-            transition:color .5s ease;
-        }
-
-        .workLink{
-            margin-top:auto;
-
-            color:var(--color-text);
-            text-decoration:none;
-
-            font-size:12px;
-            font-weight:500;
-            letter-spacing:2px;
-            text-transform:uppercase;
-
-            transition:color .3s ease;
-        }
-
-        .workLink:hover{
-            color:var(--color-accent);
-        }
-
-        @media (max-width:900px){
-
-            .work{
-                padding:96px 0;
-            }
-
-            .workIntro{
-                flex-direction:column;
-                align-items:flex-start;
-                gap:20px;
-            }
-
-            .work h2{
-                font-size:34px;
-            }
-
-            .workGrid{
-                grid-template-columns:1fr;
-            }
-
-        }
-
-        /* ===================================
-           CONTACT CTA
-        =================================== */
-
-        .contactCta{
-            height:calc(100vh - 96px);
-
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-
             text-align:center;
         }
 
-        .contactCta .eyebrow{
-            display:block;
+        .factValue{
+            font-size:15px;
+            text-align:center;
         }
 
-        .contactCta h2{
-            width:640px;
-            margin:0 auto 40px;
-
-            font-family:"Playfair Display", serif;
-            font-size:56px;
-            font-weight:700;
-            line-height:1.15;
-            letter-spacing:-1px;
-        }
-
-        .ctaButton{
-            display:inline-block;
-            padding:18px 40px;
-
-            border:1px solid var(--color-accent);
-
-            color:var(--color-accent);
-            text-decoration:none;
-
-            font-size:13px;
+        /* Work card text — Daraz / EcoMart */
+        .cardTag{
+            margin-bottom:22px;
+            font-size:12px;
             font-weight:500;
             letter-spacing:2px;
             text-transform:uppercase;
-
-            transition:background-color .3s ease, color .3s ease, border-color .5s ease;
-        }
-
-        .ctaButton:hover{
-            background:var(--color-accent);
-            color:var(--color-bg);
-        }
-
-        @media (max-width:900px){
-
-            .contactCta{
-                height:auto;
-                padding:96px 0;
-            }
-
-            .contactCta h2{
-                width:100%;
-
-                font-size:34px;
-            }
-
-        }
-
-        /* ===================================
-           FOOTER
-        =================================== */
-
-        .siteFooter{
-            padding:48px 0;
-
-            background:color-mix(in srgb, var(--color-surface) 25%, transparent);
-
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            gap:24px;
-
-            transition:background-color .5s ease;
-        }
-
-        .siteFooter .logo{
-            font-size:16px;
-        }
-
-        .footerLinks{
-            display:flex;
-            gap:32px;
-
-            list-style:none;
-        }
-
-        .footerLinks a{
-            color:var(--color-text);
-            text-decoration:none;
-
-            font-size:12px;
-            letter-spacing:2px;
-            text-transform:uppercase;
-
-            transition:color .3s ease;
-        }
-
-        .footerLinks a:hover{
-            color:var(--color-accent);
-        }
-
-        .footerNote{
-            font-size:12px;
             color:var(--color-muted);
-
-            transition:color .5s ease;
+            text-align:center;
         }
 
+        .cardTitle{
+            margin-bottom:16px;
+            font-family:"Playfair Display", serif;
+            font-size:26px;
+            font-weight:700;
+            text-align:center;
+        }
+
+        .cardDesc{
+            margin-bottom:28px;
+            font-size:15px;
+            line-height:1.8;
+            color:var(--color-muted);
+            text-align:justify;
+        }
+
+        /* On mobile the header wraps to a taller, auto-height stack
+           (see style.css), so the 96px subtraction below is too small —
+           this keeps section content and the scroll-down arrow clear
+           of the sticky header instead of being tucked under it. */
         @media (max-width:900px){
-
-            .siteFooter{
-                flex-direction:column;
-                text-align:center;
+            .fullSection{
+                min-height:calc(100vh - 160px);
             }
-
-            .footerLinks{
-                flex-wrap:wrap;
-                justify-content:center;
-            }
-
         }
+
+
 
     </style>
-
 </head>
 
 <body>
@@ -488,15 +132,19 @@
 
     <nav>
 
-        <a href="index.html" class="logo">
-            Subham Ghimire
+        <a href="index.html" class="homeButton">
+            <img src="assets/home.svg" alt="Home" width="18" height="18">
         </a>
 
         <ul class="navLinks">
-            <li><a href="index.html" id="overviewLink">Overview</a></li>
-            <li><a href="project.html">My Works</a></li>
+            <li><a href="#about" id="overviewLink">Overview</a></li>
+            <li><a href="#work" id="worksLink">My Works</a></li>
             <li><a href="contact.html">About Me</a></li>
         </ul>
+
+        <button class="darkModeToggle" id="darkModeToggle" aria-label="Toggle dark mode">
+            <img src="assets/dark.svg" alt="Toggle dark mode" width="18" height="18">
+        </button>
 
     </nav>
 
@@ -504,178 +152,221 @@
 
 <main>
 
-    <section class="pageHeader">
+    <!-- ===================================
+         HERO — full viewport
+    =================================== -->
 
-        <div class="heroContent">
+    <section id="hero" class="fullSection centerBlock" style="padding:64px 24px;">
 
-            <p class="roleLine">
-                Web Developer & UI/UX Designer
+        <div style="width:min(760px, 100%);">
+
+            <p class="eyebrow">
+                Web Developer &amp; UI/UX Designer
             </p>
 
-            <h1>
+            <h1 style="margin-bottom:28px; font-family:'Playfair Display', serif; font-size:clamp(48px, 10.5vw, 148px); font-weight:900; line-height:0.92; letter-spacing:-3px;">
                 SUBHAM<br>
                 GHIMIRE
             </h1>
 
-            <p class="tagline">
+            <p style="width:min(620px, 100%); margin:0 auto; font-size:18px; line-height:1.85; color:var(--color-muted); text-align:justify;">
                 I design and build digital experiences that treat sustainability as a constraint, not a caption.
             </p>
 
         </div>
 
+        <button class="scrollDown" data-target="#about" aria-label="Scroll to About section" style="position:absolute; left:50%; bottom:40px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </button>
+
     </section>
 
-    <section class="about" id="about">
+    <!-- ===================================
+         ABOUT — full viewport
+         Layout: centered eyebrow+heading intro,
+         then the two-column content below.
+    =================================== -->
 
-        <div class="aboutIntro">
+    <section id="about" class="fullSection" style="padding:96px 0;">
 
-            <p class="eyebrow">About</p>
+        <div class="sectionIntro">
 
-            <h2>
-                Where design<br>
-                meets development.
+            <p class="eyebrow">
+                About
+            </p>
+
+            <h2 class="serifHeading" style="font-size:clamp(32px, 4.2vw, 56px);">
+                A Brief Overview.
             </h2>
 
         </div>
 
-        <div class="aboutBody">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:clamp(40px, 6vw, 96px); align-items:start;">
 
-            <p>
-                I'm an aspiring front-end web developer and UI/UX design enthusiast, currently pursuing a
-                B.Sc. (Hons) in Computing at Islington College, affiliated with London Metropolitan University.
-            </p>
+            <div>
 
-            <p>
-                My work sits at the intersection of design and development &mdash; I design interfaces for web
-                applications, build responsive sites with modern front-end technologies, and apply UI/UX
-                principles to make things people can actually use. I'm a lifelong learner, always exploring
-                where good design and solid engineering meet.
-            </p>
+                <div style="display:flex; gap:64px; margin-bottom:52px;">
 
-            <ul class="factList">
+                    <p class="bodyText" style="flex:1;">
+                        I'm an aspiring front-end web developer and UI/UX design enthusiast, currently pursuing a B.Sc.
+                        (Hons) in Computing at Islington College, affiliated with London Metropolitan University.
+                        My studies have strengthened my foundation in both design thinking and modern web technologies.
+                    </p>
 
-                <li>
-                    <span class="factLabel">Studying at</span>
-                    <span class="factValue">Islington College &mdash; London Metropolitan University</span>
-                </li>
+                    <p class="bodyText" style="flex:1;">
+                        My work sits at the intersection of design and development &mdash; I design interfaces for web
+                        applications, build responsive sites with modern front-end technologies, and apply UI/UX
+                        principles to make things people can actually use. I'm a lifelong learner, always exploring
+                        where good design and solid engineering meet.
+                    </p>
 
-                <li>
-                    <span class="factLabel">Focus</span>
-                    <span class="factValue">Front-end Development &amp; UI/UX Design</span>
-                </li>
+                </div>
 
-                <li>
-                    <span class="factLabel">Interested in</span>
-                    <span class="factValue">Responsive Design, Wireframing &amp; Prototyping</span>
-                </li>
+                <ul style="list-style:none;">
 
-                <li>
-                    <span class="factLabel">Currently exploring</span>
-                    <span class="factValue">User-centred, e-commerce &amp; accessible web experiences</span>
-                </li>
+                    <li class="factRow">
+                        <span class="factLabel">Studying at</span>
+                        <span class="factValue">Islington College &mdash; London Metropolitan University</span>
+                    </li>
 
-            </ul>
+                    <li class="factRow">
+                        <span class="factLabel">Focus</span>
+                        <span class="factValue">Front-end Development &amp; UI/UX Design</span>
+                    </li>
+
+                    <li class="factRow">
+                        <span class="factLabel">Interested in</span>
+                        <span class="factValue">Responsive Design, Wireframing &amp; Prototyping</span>
+                    </li>
+
+                    <li class="factRow" style="border-bottom:none;">
+                        <span class="factLabel">Currently exploring</span>
+                        <span class="factValue">User-centred, e-commerce &amp; accessible web experiences</span>
+                    </li>
+
+                </ul>
+
+            </div>
 
         </div>
 
-    </section>
-
-    <section class="strengths">
-
-        <h2>Strengths &amp; areas of expertise</h2>
-
-        <div class="chipGrid">
-            <span class="chip">Front-end Web Development</span>
-            <span class="chip">UI/UX Design</span>
-            <span class="chip">Responsive Web Design</span>
-            <span class="chip">Wireframing &amp; Prototyping</span>
-            <span class="chip">Graphic Design Fundamentals</span>
-            <span class="chip">Visual Communication</span>
-            <span class="chip">Problem-solving</span>
-            <span class="chip">Adaptability</span>
-        </div>
+        <button class="scrollDown" data-target="#work" aria-label="Scroll to Selected Work section" style="position:absolute; left:50%; bottom:32px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </button>
 
     </section>
 
-    <section class="work" id="work">
+    <!-- ===================================
+         SELECTED WORK — full viewport
+         Layout matches About: centered eyebrow+heading
+         intro, then the content (project cards) below.
+    =================================== -->
 
-        <p class="eyebrow">Selected Work</p>
+    <section id="work" class="fullSection" style="padding:80px 0;">
 
-        <div class="workIntro">
+        <div class="sectionIntro">
 
-            <h2>A curated look at how I think through design and code.</h2>
+            <p class="eyebrow">
+                Selected Work
+            </p>
 
-            <p class="workNote">
+            <h2 class="serifHeading" style="max-width:640px; margin:0 auto; font-size:clamp(28px, 3.4vw, 48px);">
+                A Brief Overview of My Work
+            </h2>
+
+            <p style="max-width:460px; margin:16px auto 0; font-size:15px; line-height:1.8; color:var(--color-muted);">
                 A mix of academic and personal projects, showing both the design process
                 and the implementation behind it.
             </p>
 
         </div>
 
-        <div class="workGrid">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(380px, 1fr));">
 
-            <article class="workCard workCard--daraz">
+            <article class="workCard workCard--daraz" style="padding:28px; display:flex; flex-direction:column; border-radius:2px; border-right: 1px solid #ccc;">
 
-                <p class="workTag">UI Redesign &middot; Case Study</p>
+                <p class="cardTag">
+                    UI Redesign &middot; Case Study
+                </p>
 
-                <h3>Daraz.com.np Redesign</h3>
+                <h3 class="cardTitle">
+                    Daraz.com.np Redesign
+                </h3>
 
-                <p>
+                <p class="cardDesc">
                     A UI redesign case study of Daraz.com.np, focused on improving usability
                     and visual clarity for one of Nepal's largest e-commerce platforms.
                 </p>
 
-                <a href="project.html" class="workLink">View Project &rarr;</a>
+                <a href="https://www.figma.com/proto/6S8n9WeEFWRbaRE1Iao4KX/Daraz.com.np-%7C-Re-designed?node-id=10-3&t=DBtTSrnY9ASdTWI4-1" class="workLink" style="margin-bottom:32px; color:var(--color-text); text-decoration:none; font-size:12px; font-weight:500; letter-spacing:2px; text-transform:uppercase; text-align:center;">
+                    View Project &rarr;
+                </a>
+
+                
 
             </article>
 
-            <article class="workCard workCard--ecomart">
 
-                <p class="workTag">E-commerce &middot; College Coursework</p>
+            <article class="workCard workCard--ecomart" style="padding:28px; display:flex; flex-direction:column; border-radius:2px;">
 
-                <h3>EcoMart</h3>
+                <p class="cardTag">
+                    E-commerce &middot; College Coursework
+                </p>
 
-                <p>
+                <h3 class="cardTitle">
+                    EcoMart
+                </h3>
+
+                <p class="cardDesc">
                     EcoMart is an e-commerce platform developed as college coursework, built
                     to explore real-world front-end development for online retail.
                 </p>
 
-                <a href="project.html" class="workLink">View Project &rarr;</a>
+                <a href="https://subghimire40.github.io/ecoMart/" class="workLink" style="margin-bottom:32px; color:var(--color-text); text-decoration:none; font-size:12px; font-weight:500; letter-spacing:2px; text-transform:uppercase; text-align:center;">
+                    View Project &rarr;
+                </a>
 
+                
             </article>
 
         </div>
 
+        <button class="scrollDown" data-target="#contact" aria-label="Scroll to Contact section" style="position:absolute; left:50%; bottom:32px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </button>
+
     </section>
 
-    <section class="contactCta" id="contact">
+    <!-- ===================================
+         CONTACT CTA — full viewport
+         Layout matches About: centered eyebrow+heading
+         intro, then the content (CTA button) below.
+    =================================== -->
 
-        <p class="eyebrow">Get In Touch</p>
+    <section id="contact" class="fullSection centerBlock" style="padding:96px 24px;">
 
-        <h2>Let's build something worth using.</h2>
+        <div class="sectionIntro">
 
-        <a href="contact.html" class="ctaButton">About Me &amp; Contact</a>
+            <p class="eyebrow">
+                Get In Touch
+            </p>
+
+            <h2 class="serifHeading" style="width:min(640px, 100%); margin:0 auto; font-size:clamp(30px, 4.4vw, 56px);">
+                Let's build something worth using.
+            </h2>
+
+        </div>
+
+        <a href="contact.html" class="ctaButton" style="display:inline-block; padding:18px 40px; text-decoration:none; font-size:13px; font-weight:500; letter-spacing:2px; text-transform:uppercase;">
+            Contact
+        </a>
 
     </section>
 
 </main>
 
-<footer class="siteFooter">
 
-    <span class="logo">Subham Ghimire</span>
-
-    <ul class="footerLinks">
-        <!-- TODO: replace with real links -->
-        <li><a href="mailto:hello@example.com">Email</a></li>
-        <li><a href="#">LinkedIn</a></li>
-        <li><a href="#">GitHub</a></li>
-    </ul>
-
-    <span class="footerNote">&copy; 2026 Subham Ghimire</span>
-
-</footer>
-
-<script src="script.js" defer></script>
+<script src="scripts/script.js" defer></script>
 
 </body>
 </html>

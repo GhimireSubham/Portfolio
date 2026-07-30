@@ -78,39 +78,3 @@ for (var i = 0; i < scrollButtons.length; i++) {
     });
 }
 
-const music = new Audio("/assets/music/PaperAirplane.mp3");
-
-music.loop = true;
-music.volume = 0.15;
-
-function playAudio() {
-    music.play().then(() => {
-        localStorage.setItem("musicPlaying", "true");
-    }).catch(err => {
-        // Handle browser autoplay policy restrictions
-        console.warn("Autoplay blocked. Waiting for user interaction.", err);
-    });
-}
-
-if (localStorage.getItem("musicPlaying") === "true") {
-    playAudio();
-} else {
-    document.addEventListener("click", playAudio, { once: true });
-}
-
-// Save playback time right before the page unloads
-window.addEventListener("beforeunload", () => {
-    localStorage.setItem("musicTime", music.currentTime);
-});
-
-// On load, restore the time position
-const savedTime = localStorage.getItem("musicTime");
-if (savedTime) {
-    music.currentTime = parseFloat(savedTime);
-}
-
-if (localStorage.getItem("musicPlaying") === "true") {
-    playAudio();
-} else {
-    document.addEventListener("click", playAudio, { once: true });
-}

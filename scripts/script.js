@@ -81,7 +81,7 @@ for (var i = 0; i < scrollButtons.length; i++) {
 const music = new Audio("/assets/music/PaperAirplane.mp3");
 
 music.loop = true;
-music.volume = 0.3;
+music.volume = 0.15;
 
 function playAudio() {
     music.play().then(() => {

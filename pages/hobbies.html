@@ -103,7 +103,6 @@
             background: var(--color-bg);
             display: flex;
             flex-direction: column;
-            gap: 10px;
             transition: background .3s ease, transform .3s ease;
             cursor: default;
         }
@@ -156,8 +155,9 @@
             background: currentColor;
         }
 
-        .gameStatus--playing::before { background: #4ade80; opacity: 1; }
-        .gameStatus--played::before  { background: var(--color-muted); }
+        .gameStatus--playing::before  { background: #4ade80; opacity: 1; }
+        .gameStatus--played::before   { background: var(--color-muted); }
+        .gameStatus--abandoned::before { background: #f87171; opacity: 1; }
 
         /* ---- Gaming Photography section ---- */
         .gameShotGrid {
@@ -366,6 +366,117 @@
 
         /* dark-mode tint for game status dot */
         body.dark-mode .gameStatus--playing::before { background: #4ade80; }
+
+        /* ---- Image protection — no right-click, no drag ---- */
+        .gameShotItem img,
+        .photoItem img,
+        .gameItem__cover {
+            -webkit-user-drag: none;
+            user-drag: none;
+            -webkit-user-select: none;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* Re-enable pointer-events on the wrapper so hover/click still work */
+        .gameShotItem,
+        .photoItem {
+            pointer-events: auto;
+        }
+
+        /* Portrait (9:16) variant for vertical screenshots */
+        .gameShotItem--portrait {
+            aspect-ratio: 9/16;
+        }
+
+        /* ---- Game group headers ---- */
+        .gameGroupHeader {
+            grid-column: 1 / -1;
+            padding: 18px 28px 14px;
+            background: color-mix(in srgb, var(--color-muted) 8%, var(--color-bg));
+            border-bottom: 1px solid color-mix(in srgb, var(--color-muted) 20%, transparent);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .gameGroupHeader__label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-muted);
+        }
+
+        .gameGroupHeader__count {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--color-muted);
+            opacity: .5;
+        }
+
+        /* ---- Game item cover image ---- */
+        .gameItem {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gameItem__cover {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity .5s ease;
+            display: block;
+            filter: saturate(80%) brightness(0.35);
+        }
+
+        .gameItem:hover .gameItem__cover {
+            opacity: 1;
+        }
+
+        .gameItem__content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* ---- Photography group headers (for gaming photography) ---- */
+        .shotGroupHeader {
+            grid-column: 1 / -1;
+            padding: 20px 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .shotGroupHeader__title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-muted);
+            white-space: nowrap;
+        }
+
+        .shotGroupHeader__line {
+            flex: 1;
+            height: 1px;
+            background: color-mix(in srgb, var(--color-muted) 20%, transparent);
+        }
+
+        /* ---- Lightbox image protection ---- */
+        .lightbox img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            -webkit-user-select: none;
+            user-select: none;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -831,46 +942,298 @@
 
         <div class="gameList" style="margin-top:clamp(32px, 5vw, 56px);">
 
-            <div class="gameItem">
-                <span class="gameGenre">Action RPG</span>
-                <span class="gameTitle">Elden Ring</span>
-                <span class="gameDesc">Brutal, beautiful, and completely disrespectful of my sleep schedule. Best open world in recent memory.</span>
-                <span class="gameStatus gameStatus--playing">Currently playing</span>
+            <!-- ══════════════════════════════
+                 COMPLETED — 12
+            ══════════════════════════════ -->
+            <div class="gameGroupHeader">
+                <span class="gameGroupHeader__label">Completed</span>
+                <span class="gameGroupHeader__count">12 games</span>
             </div>
 
             <div class="gameItem">
-                <span class="gameGenre">Action Adventure</span>
-                <span class="gameTitle">Ghost of Tsushima</span>
-                <span class="gameDesc">The photo mode alone could be its own game. Every frame looks like a woodblock print.</span>
-                <span class="gameStatus gameStatus--played">Completed</span>
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Indie · Platform</span>
+                    <span class="gameTitle">Stray</span>
+                    <span class="gameDesc">I played as a cat through a neon cybercity and cried. No notes.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
             </div>
 
             <div class="gameItem">
-                <span class="gameGenre">Narrative / RPG</span>
-                <span class="gameTitle">Cyberpunk 2077</span>
-                <span class="gameDesc">Night City is one of the most dense and visually striking environments I've ever walked through.</span>
-                <span class="gameStatus gameStatus--played">Completed</span>
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/383870/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Indie</span>
+                    <span class="gameTitle">Firewatch</span>
+                    <span class="gameDesc">Four hours of hiking, radio banter, and existential dread. One of the most atmospheric games ever made.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
             </div>
 
             <div class="gameItem">
-                <span class="gameGenre">Open World</span>
-                <span class="gameTitle">Red Dead Redemption 2</span>
-                <span class="gameDesc">The benchmark for world-building. I once spent 40 minutes just riding through a thunderstorm doing nothing.</span>
-                <span class="gameStatus gameStatus--played">Completed</span>
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817190/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Hack and Slash</span>
+                    <span class="gameTitle">Marvel's Spider-Man 2: Digital Deluxe Edition</span>
+                    <span class="gameDesc">No game makes traversal feel this good. Swinging through Manhattan at sunset is genuinely therapeutic.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
             </div>
 
             <div class="gameItem">
-                <span class="gameGenre">Action Adventure</span>
-                <span class="gameTitle">Spider-Man 2</span>
-                <span class="gameDesc">No game makes traversal feel this good. Swinging through Manhattan at sunset is genuinely therapeutic.</span>
-                <span class="gameStatus gameStatus--played">Completed</span>
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · RPG · Shooter</span>
+                    <span class="gameTitle">Red Dead Redemption 2</span>
+                    <span class="gameDesc">The benchmark for world-building. I once spent 40 minutes just riding through a thunderstorm doing nothing.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
             </div>
 
             <div class="gameItem">
-                <span class="gameGenre">Shooter</span>
-                <span class="gameTitle">Valorant</span>
-                <span class="gameDesc">My friends dragged me in. Now I'm the one dragging others. It never ends.</span>
-                <span class="gameStatus gameStatus--playing">Ongoing</span>
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1843230/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · RPG · Shooter</span>
+                    <span class="gameTitle">Red Dead Redemption</span>
+                    <span class="gameDesc">Where it all started for Arthur's world. A western that still hasn't been topped for sheer heart.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1593500/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Action RPG · Hack and Slash</span>
+                    <span class="gameTitle">God of War</span>
+                    <span class="gameDesc">The reinvention that nobody expected. Kratos as a father hits harder than any boss fight.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Action RPG · Hack and Slash</span>
+                    <span class="gameTitle">God of War Ragnarök</span>
+                    <span class="gameDesc">Kratos carrying the weight of myth and fatherhood at the same time. The combat is immaculate.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Action Adventure · RPG</span>
+                    <span class="gameTitle">Ghost of Tsushima: Director's Cut</span>
+                    <span class="gameDesc">The photo mode alone could be its own game. Every frame looks like a woodblock print.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2208920/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure</span>
+                    <span class="gameTitle">Assassin's Creed Mirage</span>
+                    <span class="gameDesc">A return to the roots — Baghdad is alive, the parkour is back, and Basim is genuinely compelling.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289650/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · RPG</span>
+                    <span class="gameTitle">Assassin's Creed Unity</span>
+                    <span class="gameDesc">Revolutionary Paris is still one of the most stunning open worlds ever built. The co-op was ahead of its time.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/368500/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure</span>
+                    <span class="gameTitle">Assassin's Creed Syndicate</span>
+                    <span class="gameDesc">Victorian London rendered in obsessive detail. The grappling hook changed everything.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/208480/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Hack and Slash · Platform</span>
+                    <span class="gameTitle">AC Black Flag Resynced</span>
+                    <span class="gameDesc">The high seas, shanties, and Edward Kenway being deeply irresponsible with a ship. Peak Assassin's Creed.</span>
+                    <span class="gameStatus gameStatus--played">Completed</span>
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════
+                 ABANDONED — 8
+            ══════════════════════════════ -->
+            <div class="gameGroupHeader">
+                <span class="gameGroupHeader__label">Abandoned</span>
+                <span class="gameGroupHeader__count">8 games</span>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Action RPG</span>
+                    <span class="gameTitle">Elden Ring</span>
+                    <span class="gameDesc">Brutal, beautiful, and completely disrespectful of my time. The world is extraordinary; the bosses are not merciful.</span>
+                    <span class="gameStatus gameStatus--abandoned">Abandoned</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Hack and Slash · RPG</span>
+                    <span class="gameTitle">Black Myth: Wukong</span>
+                    <span class="gameDesc">Visually spectacular. The art direction is unmatched. Got humbled and put it down — for now.</span>
+                    <span class="gameStatus gameStatus--abandoned">Abandoned</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1888930/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Shooter</span>
+                    <span class="gameTitle">The Last of Us Part I</span>
+                    <span class="gameDesc">The world is devastatingly realized. I put it down not from boredom but from emotional exhaustion.</span>
+                    <span class="gameStatus gameStatus--abandoned">Abandoned</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2519060/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Arcade · Racing · Simulator</span>
+                    <span class="gameTitle">Forza Horizon 6</span>
+                    <span class="gameDesc">Fiji looks insane. The cars feel incredible. I just can't commit to a racing game for more than two weeks.</span>
+                    <span class="gameStatus gameStatus--abandoned">Abandoned</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Racing · Shooter</span>
+                    <span class="gameTitle">Grand Theft Auto V</span>
+                    <span class="gameDesc">Los Santos is a masterpiece of detail. Got distracted doing side content and never came back to the story.</span>
+                    <span class="gameStatus gameStatus--abandoned">Abandoned</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/208650/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Hack and Slash</span>
+                    <span class="gameTitle">Batman: Arkham Knight</span>
+                    <span class="gameDesc">The Batmobile sections wore me down. The rest of the game is exceptional — Gotham has never looked better.</span>
+                    <span class="gameStatus gameStatus--abandoned">Abandoned</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582160/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · RPG</span>
+                    <span class="gameTitle">Assassin's Creed Origins</span>
+                    <span class="gameDesc">Ancient Egypt is breathtaking. Started strong and lost the thread somewhere around hour fifteen.</span>
+                    <span class="gameStatus gameStatus--abandoned">Abandoned</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2971640/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · RPG</span>
+                    <span class="gameTitle">Assassin's Creed Shadows</span>
+                    <span class="gameDesc">Feudal Japan deserved this treatment. The dual protagonist system is genuinely interesting — just ran out of steam.</span>
+                    <span class="gameStatus gameStatus--abandoned">Abandoned</span>
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════
+                 PLAYING — 7
+            ══════════════════════════════ -->
+            <div class="gameGroupHeader">
+                <span class="gameGroupHeader__label">Currently Playing</span>
+                <span class="gameGroupHeader__count">7 games</span>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2677660/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure</span>
+                    <span class="gameTitle">Resonance: A Plague Tale Legacy</span>
+                    <span class="gameDesc">The Plague Tale saga keeps raising the bar. Haunting atmosphere, tight storytelling — I haven't put it down.</span>
+                    <span class="gameStatus gameStatus--playing">Currently playing</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2012440/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Indie · Platform · Puzzle</span>
+                    <span class="gameTitle">SCHiM</span>
+                    <span class="gameDesc">Jumping between shadows has never felt this meditative. A quiet, clever gem hiding in plain sight.</span>
+                    <span class="gameStatus gameStatus--playing">Currently playing</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817190/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Hack and Slash</span>
+                    <span class="gameTitle">Marvel's Spider-Man 2</span>
+                    <span class="gameDesc">Second run. Still the best traversal in any game. The new web wings change everything.</span>
+                    <span class="gameStatus gameStatus--playing">Playing</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/22200/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Simulator</span>
+                    <span class="gameTitle">Minecraft: Java Edition</span>
+                    <span class="gameDesc">Fifteen years in and it still pulls me back. There's something quietly infinite about an empty world.</span>
+                    <span class="gameStatus gameStatus--playing">Ongoing</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2666560/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Open World · Adventure</span>
+                    <span class="gameTitle">Crimson Desert</span>
+                    <span class="gameDesc">Gorgeous, brutal, and ambitious. Still early days but the world already feels worth exploring.</span>
+                    <span class="gameStatus gameStatus--playing">Currently playing</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1067700/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Shooter · Tactical</span>
+                    <span class="gameTitle">Valorant</span>
+                    <span class="gameDesc">My friends dragged me in. Now I'm the one dragging others. It never ends.</span>
+                    <span class="gameStatus gameStatus--playing">Ongoing</span>
+                </div>
+            </div>
+
+            <div class="gameItem">
+                <img class="gameItem__cover" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/298110/header.jpg" alt="" draggable="false" oncontextmenu="return false;">
+                <div class="gameItem__content">
+                    <span class="gameGenre">Adventure · Shooter · Tactical</span>
+                    <span class="gameTitle">Far Cry 4</span>
+                    <span class="gameDesc">Kyrat is absurdly beautiful and unhinged in equal measure. Pagan Min deserved better.</span>
+                    <span class="gameStatus gameStatus--playing">Currently playing</span>
+                </div>
             </div>
 
         </div>
@@ -905,62 +1268,190 @@
 
         </div>
 
-        <!-- 3-column grid of 16:9 in-game shots — swap placeholders with real screenshots -->
+        <!-- Gaming screenshots — grouped per game, sorted alphabetically -->
         <div class="gameShotGrid" style="margin-top:clamp(32px, 5vw, 56px);">
 
-            <div class="gameShotItem" data-caption="Ghost of Tsushima">
-                <div class="gameShotPlaceholder">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
-                    <span>Screenshot</span>
-                </div>
+            <!-- ── AC: Black Flag (shots 1–9 landscape, 10–11 portrait) ── -->
+            <div class="shotGroupHeader">
+                <span class="shotGroupHeader__title">AC: Black Flag</span>
+                <span class="shotGroupHeader__line"></span>
+            </div>
+
+            <div class="gameShotItem" data-caption="AC: Black Flag — 1">
+                <img src="../assets/Images/Ac black flag-1.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem" data-caption="AC: Black Flag — 2">
+                <img src="../assets/Images/Ac black flag-2.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem" data-caption="AC: Black Flag — 3">
+                <img src="../assets/Images/Ac black flag-3.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem" data-caption="AC: Black Flag — 4">
+                <img src="../assets/Images/Ac black flag-4.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem" data-caption="AC: Black Flag — 5">
+                <img src="../assets/Images/Ac black flag-5.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem" data-caption="AC: Black Flag — 6">
+                <img src="../assets/Images/Ac black flag-6.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem" data-caption="AC: Black Flag — 7">
+                <img src="../assets/Images/Ac black flag-7.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem" data-caption="AC: Black Flag — 8">
+                <img src="../assets/Images/Ac black flag-8.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem" data-caption="AC: Black Flag — 9">
+                <img src="../assets/Images/Ac black flag-9.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem gameShotItem--portrait" data-caption="AC: Black Flag — 10">
+                <img src="../assets/Images/Ac black flag-10.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+            <div class="gameShotItem gameShotItem--portrait" data-caption="AC: Black Flag — 11">
+                <img src="../assets/Images/Ac black flag-11.png" alt="AC: Black Flag" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Black Flag</div>
+            </div>
+
+            <!-- ── AC: Syndicate ── -->
+            <div class="shotGroupHeader">
+                <span class="shotGroupHeader__title">AC: Syndicate</span>
+                <span class="shotGroupHeader__line"></span>
+            </div>
+
+            <div class="gameShotItem" data-caption="AC: Syndicate">
+                <img src="../assets/Images/Ac syndicate.png" alt="AC: Syndicate" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">AC: Syndicate</div>
+            </div>
+
+            <!-- ── Black Myth: Wukong ── -->
+            <div class="shotGroupHeader">
+                <span class="shotGroupHeader__title">Black Myth: Wukong</span>
+                <span class="shotGroupHeader__line"></span>
+            </div>
+
+            <div class="gameShotItem" data-caption="Black Myth: Wukong — Cutscene 1">
+                <img src="../assets/Images/Black Myth Wukong Cutscene1.png" alt="Black Myth: Wukong" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Black Myth: Wukong</div>
+            </div>
+            <div class="gameShotItem" data-caption="Black Myth: Wukong — Cutscene 2">
+                <img src="../assets/Images/Black Myth Wukong Cutscene2.png" alt="Black Myth: Wukong" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Black Myth: Wukong</div>
+            </div>
+
+            <!-- ── Firewatch ── -->
+            <div class="shotGroupHeader">
+                <span class="shotGroupHeader__title">Firewatch</span>
+                <span class="shotGroupHeader__line"></span>
+            </div>
+
+            <div class="gameShotItem" data-caption="Firewatch — 1">
+                <img src="../assets/Images/Firewatch (1).jpg" alt="Firewatch" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Firewatch</div>
+            </div>
+            <div class="gameShotItem" data-caption="Firewatch — 2">
+                <img src="../assets/Images/Firewatch (2).jpg" alt="Firewatch" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Firewatch</div>
+            </div>
+            <div class="gameShotItem" data-caption="Firewatch — 3">
+                <img src="../assets/Images/Firewatch (3).jpg" alt="Firewatch" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Firewatch</div>
+            </div>
+            <div class="gameShotItem" data-caption="Firewatch — 4">
+                <img src="../assets/Images/firewatch-1.png" alt="Firewatch" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Firewatch</div>
+            </div>
+
+            <!-- ── Forza Horizon 6 ── -->
+            <div class="shotGroupHeader">
+                <span class="shotGroupHeader__title">Forza Horizon 6</span>
+                <span class="shotGroupHeader__line"></span>
+            </div>
+
+            <div class="gameShotItem" data-caption="Forza Horizon 6 — Fiji Garage">
+                <img src="../assets/Images/Forza Horizon 6 Fiji From Garage.png" alt="Forza Horizon 6" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Forza Horizon 6</div>
+            </div>
+
+            <!-- ── Ghost of Tsushima ── -->
+            <div class="shotGroupHeader">
+                <span class="shotGroupHeader__title">Ghost of Tsushima</span>
+                <span class="shotGroupHeader__line"></span>
+            </div>
+
+            <div class="gameShotItem" data-caption="Ghost of Tsushima — 1">
+                <img src="../assets/Images/Ghost of Tsushima (1).png" alt="Ghost of Tsushima" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Ghost of Tsushima</div>
+            </div>
+            <div class="gameShotItem" data-caption="Ghost of Tsushima — 2">
+                <img src="../assets/Images/Ghost of Tsushima (2).png" alt="Ghost of Tsushima" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Ghost of Tsushima</div>
+            </div>
+            <div class="gameShotItem" data-caption="Ghost of Tsushima — 3">
+                <img src="../assets/Images/Ghost of Tsushima (3).png" alt="Ghost of Tsushima" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Ghost of Tsushima</div>
+            </div>
+            <div class="gameShotItem" data-caption="Ghost of Tsushima — 4">
+                <img src="../assets/Images/Ghost of Tsushima (4).png" alt="Ghost of Tsushima" draggable="false" oncontextmenu="return false;">
                 <div class="gameShotLabel">Ghost of Tsushima</div>
             </div>
 
-            <div class="gameShotItem" data-caption="Red Dead Redemption 2">
-                <div class="gameShotPlaceholder">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
-                    <span>Screenshot</span>
-                </div>
+            <!-- ── God of War: Ragnarök ── -->
+            <div class="shotGroupHeader">
+                <span class="shotGroupHeader__title">God of War: Ragnarök</span>
+                <span class="shotGroupHeader__line"></span>
+            </div>
+
+            <div class="gameShotItem" data-caption="God of War: Ragnarök">
+                <img src="../assets/Images/God Of War - Ragnarok.png" alt="God of War: Ragnarök" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">God of War: Ragnarök</div>
+            </div>
+
+            <!-- ── Red Dead Redemption 2 ── -->
+            <div class="shotGroupHeader">
+                <span class="shotGroupHeader__title">Red Dead Redemption 2</span>
+                <span class="shotGroupHeader__line"></span>
+            </div>
+
+            <div class="gameShotItem" data-caption="RDR2 — Arthur Morgan">
+                <img src="../assets/Images/RDR2 - Arthur Morgan ED.png" alt="RDR2 — Arthur Morgan" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Red Dead Redemption 2</div>
+            </div>
+            <div class="gameShotItem" data-caption="RDR2 — Clemens Point">
+                <img src="../assets/Images/RDR2 - Clemens Point.png" alt="RDR2 — Clemens Point" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Red Dead Redemption 2</div>
+            </div>
+            <div class="gameShotItem" data-caption="RDR2 — Deer">
+                <img src="../assets/Images/RDR2 - Deer.png" alt="RDR2 — Deer" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Red Dead Redemption 2</div>
+            </div>
+            <div class="gameShotItem" data-caption="RDR2 — New Austin">
+                <img src="../assets/Images/RDR2 - New Austin.png" alt="RDR2 — New Austin" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Red Dead Redemption 2</div>
+            </div>
+            <div class="gameShotItem" data-caption="RDR2 — Rhodes">
+                <img src="../assets/Images/RDR2 - Rhodes.png" alt="RDR2 — Rhodes" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Red Dead Redemption 2</div>
+            </div>
+            <div class="gameShotItem" data-caption="RDR2 — Shady Belle">
+                <img src="../assets/Images/RDR2 - Shady Belle.png" alt="RDR2 — Shady Belle" draggable="false" oncontextmenu="return false;">
+                <div class="gameShotLabel">Red Dead Redemption 2</div>
+            </div>
+            <div class="gameShotItem" data-caption="RDR2 — West Grizzlies">
+                <img src="../assets/Images/RDR2 - West Grizzlies.png" alt="RDR2 — West Grizzlies" draggable="false" oncontextmenu="return false;">
                 <div class="gameShotLabel">Red Dead Redemption 2</div>
             </div>
 
-            <div class="gameShotItem" data-caption="Cyberpunk 2077">
-                <div class="gameShotPlaceholder">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
-                    <span>Screenshot</span>
-                </div>
-                <div class="gameShotLabel">Cyberpunk 2077</div>
-            </div>
-
-            <div class="gameShotItem" data-caption="Elden Ring">
-                <div class="gameShotPlaceholder">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
-                    <span>Screenshot</span>
-                </div>
-                <div class="gameShotLabel">Elden Ring</div>
-            </div>
-
-            <div class="gameShotItem" data-caption="Spider-Man 2">
-                <div class="gameShotPlaceholder">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
-                    <span>Screenshot</span>
-                </div>
-                <div class="gameShotLabel">Spider-Man 2</div>
-            </div>
-
-            <div class="gameShotItem" data-caption="Ghost of Tsushima">
-                <div class="gameShotPlaceholder">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
-                    <span>Screenshot</span>
-                </div>
-                <div class="gameShotLabel">Ghost of Tsushima</div>
-            </div>
-
         </div>
-
-        <p class="addPhotoNote" style="margin-top:24px;">
-            Drop in your actual screenshots — add &lt;img src="..."&gt; inside each .gameShotItem
-        </p>
 
         <button class="scrollDown" data-target="#back-to-work" aria-label="Scroll to next section" style="position:absolute; left:50%; bottom:32px;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
@@ -1048,6 +1539,8 @@
             var img = document.createElement('img');
             img.src = imgSrc;
             img.alt = caption || '';
+            img.draggable = false;
+            img.oncontextmenu = function() { return false; };
             lightboxContent.appendChild(img);
         } else {
             // no real image yet — show placeholder

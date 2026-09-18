@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hobbies | Subham Ghimire</title>
+    <title>About Me | Subham Ghimire</title>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="../assets/icon.png" sizes="32x32">
@@ -244,6 +244,126 @@
             opacity: .5;
         }
 
+        /* ---- Photo category tabs ---- */
+        .photoTabs {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: clamp(28px, 4vw, 48px) 0 32px;
+        }
+
+        .photoTab {
+            padding: 10px 28px;
+            border: 1px solid color-mix(in srgb, var(--color-muted) 30%, transparent);
+            background: transparent;
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            opacity: .5;
+            transition: opacity .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+        }
+
+        .photoTab:hover {
+            opacity: .85;
+        }
+
+        .photoTab.active {
+            background: var(--color-text);
+            color: var(--color-bg);
+            border-color: var(--color-text);
+            opacity: 1;
+        }
+
+        /* ---- Lightbox ---- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, .92);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            padding: 24px;
+            cursor: zoom-out;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: min(92vw, 1100px);
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            box-shadow: 0 32px 80px rgba(0,0,0,.6);
+        }
+
+        /* shown when there's no real image yet — placeholder state */
+        .lightbox__placeholder {
+            width: min(600px, 80vw);
+            aspect-ratio: 4/3;
+            background: rgba(255,255,255,.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            color: rgba(255,255,255,.35);
+        }
+
+        .lightbox__placeholder svg { opacity: .4; }
+
+        .lightbox__caption {
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .lightbox__close {
+            position: fixed;
+            top: 24px;
+            right: 28px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            color: rgba(255,255,255,.6);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color .2s ease;
+        }
+
+        .lightbox__close:hover { color: #fff; }
+
+        /* make photoItem and gameShotItem feel clickable */
+        .photoItem         { cursor: zoom-in; }
+        .gameShotItem      { cursor: zoom-in; }
+
+        /* ---- hero two-column → single column on mobile ---- */
+        /* hero two-column → single column on mobile */
+        @media (max-width: 768px) {
+            #about-hero > div:first-of-type {
+                grid-template-columns: 1fr;
+            }
+            #about-hero > div:first-of-type > div:first-child {
+                aspect-ratio: 4/3;
+                max-height: 340px;
+            }
+            #about-hero > div:first-of-type > div:last-child h1 {
+                font-size: clamp(32px, 10vw, 48px) !important;
+            }
+        }
+
         /* dark-mode tint for game status dot */
         body.dark-mode .gameStatus--playing::before { background: #4ade80; }
     </style>
@@ -277,29 +397,225 @@
 <main>
 
     <!-- ===================================
-         HERO — intro to the page
+         HERO — image + bio split
     =================================== -->
 
-    <section id="hobbies-hero" class="fullSection centerBlock" style="padding:64px 24px;">
+    <section id="about-hero" class="fullSection" style="padding:96px 0; justify-content:center;">
 
-        <div style="width:min(720px, 100%);">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px, 6vw, 96px); align-items:center;">
 
-            <p class="eyebrow">
-                Beyond the screen
-            </p>
+            <!-- Left — photo -->
+            <div style="overflow:hidden; aspect-ratio:3/4; background:color-mix(in srgb, var(--color-muted) 12%, transparent);">
+                <!-- Replace with: <img src="../assets/your-photo.jpg" alt="Subham Ghimire" style="width:100%;height:100%;object-fit:cover;display:block;"> -->
+                <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--color-muted);">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".35"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.4;">Your photo</span>
+                </div>
+            </div>
 
-            <h1 style="margin-bottom:28px; font-family:'Playfair Display', serif; font-size:clamp(40px, 9vw, 120px); font-weight:900; line-height:0.92; letter-spacing:-3px;">
-                THE OTHER<br>ME
-            </h1>
+            <!-- Right — bio -->
+            <div style="display:flex;flex-direction:column;gap:24px;">
 
-            <p style="width:min(560px, 100%); margin:0 auto; font-size:clamp(14px, 3.5vw, 17px); line-height:1.9; color:var(--color-muted); text-align:center;">
-                Photography, gaming, and the strange overlap between the two —
-                here's everything I do when I'm not pushing pixels for work.
-            </p>
+                <p class="eyebrow" style="text-align:left;margin-bottom:0;">
+                    About Me
+                </p>
+
+                <h1 style="font-family:'Playfair Display', serif; font-size:clamp(36px, 4.5vw, 64px); font-weight:900; line-height:1.0; letter-spacing:-2px;">
+                    Subham<br>Ghimire
+                </h1>
+
+                <p style="font-size:clamp(14px, 1.8vw, 16px); line-height:1.95; color:var(--color-muted);">
+                    A student, amateur photographer, wannabe web developer and UI/UX designer based
+                    in Kathmandu, Nepal. I'm drawn to interfaces that feel considered — where every
+                    detail has a reason. When I'm not studying or building things, I'm out shooting
+                    street photography or lost inside a game with exceptional art direction.
+                </p>
+
+                <p style="font-size:13px; line-height:1.8; color:var(--color-muted); opacity:.75;">
+                    Currently studying at Islington College &mdash; London Metropolitan University,
+                    focusing on Fullstack Development &amp; UI/UX Design.
+                </p>
+
+                <a href="contact.html" style="align-self:flex-start; padding:14px 32px; border:1px solid var(--color-accent); color:var(--color-text); text-decoration:none; font-size:12px; font-weight:500; letter-spacing:2px; text-transform:uppercase; transition:background .3s ease, color .3s ease;" class="ctaButton">
+                    Get In Touch
+                </a>
+
+            </div>
 
         </div>
 
-        <button class="scrollDown" data-target="#photography" aria-label="Scroll down" style="position:absolute; left:50%; bottom:40px;">
+        <button class="scrollDown" data-target="#personal-info" aria-label="Scroll down" style="position:absolute; left:50%; bottom:40px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </button>
+
+    </section>
+
+    <div class="hobbyDivider"></div>
+
+    <!-- ===================================
+         PERSONAL INFO
+    =================================== -->
+
+    <section id="personal-info" class="fullSection" style="padding:96px 0;">
+
+        <div class="sectionIntro">
+
+            <p class="eyebrow">
+                The basics
+            </p>
+
+            <h2 class="serifHeading" style="font-size:clamp(30px, 4vw, 52px);">
+                Personal Info
+            </h2>
+
+        </div>
+
+        <div style="padding:0 90px;">
+            <ul style="list-style:none;">
+
+                <li class="factRow">
+                    <span class="factLabel">Full name</span>
+                    <span class="factValue">Subham Ghimire</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Based in</span>
+                    <span class="factValue">Kathmandu, Nepal</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Age</span>
+                    <span class="factValue">Update this</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Languages</span>
+                    <span class="factValue">Nepali (Native) &middot; English (Fluent)</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Instagram</span>
+                    <span class="factValue"><a href="https://instagram.com/6040_subham" target="_blank" rel="noopener" style="color:inherit; text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--color-muted) 40%, transparent); transition:border-color .2s ease;">@6040_subham</a></span>
+                </li>
+
+                <li class="factRow" style="border-bottom:none;">
+                    <span class="factLabel">GitHub</span>
+                    <span class="factValue"><a href="https://github.com/ghimiresubham" target="_blank" rel="noopener" style="color:inherit; text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--color-muted) 40%, transparent); transition:border-color .2s ease;">ghimiresubham</a></span>
+                </li>
+
+            </ul>
+        </div>
+
+        <button class="scrollDown" data-target="#education" aria-label="Scroll to Education" style="position:absolute; left:50%; bottom:32px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </button>
+
+    </section>
+
+    <div class="hobbyDivider"></div>
+
+    <!-- ===================================
+         EDUCATION
+    =================================== -->
+
+    <section id="education" class="fullSection" style="padding:96px 0;">
+
+        <div class="sectionIntro">
+
+            <p class="eyebrow">
+                Background
+            </p>
+
+            <h2 class="serifHeading" style="font-size:clamp(30px, 4vw, 52px);">
+                Education
+            </h2>
+
+        </div>
+
+        <div style="padding:0 90px;">
+            <ul style="list-style:none;">
+
+                <li class="factRow">
+                    <span class="factLabel">Current</span>
+                    <span class="factValue">Islington College &mdash; London Metropolitan University</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Degree</span>
+                    <span class="factValue">BSc (Hons) Computing</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Year</span>
+                    <span class="factValue">Update this</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Focus</span>
+                    <span class="factValue">Fullstack Development &amp; UI/UX Design</span>
+                </li>
+
+                <li class="factRow" style="border-bottom:none;">
+                    <span class="factLabel">Currently exploring</span>
+                    <span class="factValue">JavaScript, Tailwind CSS &amp; Git</span>
+                </li>
+
+            </ul>
+        </div>
+
+        <button class="scrollDown" data-target="#experience" aria-label="Scroll to Experience" style="position:absolute; left:50%; bottom:32px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </button>
+
+    </section>
+
+    <div class="hobbyDivider"></div>
+
+    <!-- ===================================
+         WORK EXPERIENCE
+    =================================== -->
+
+    <section id="experience" class="fullSection" style="padding:96px 0;">
+
+        <div class="sectionIntro">
+
+            <p class="eyebrow">
+                Experience
+            </p>
+
+            <h2 class="serifHeading" style="font-size:clamp(30px, 4vw, 52px);">
+                Work Experience
+            </h2>
+
+        </div>
+
+        <div style="padding:0 90px;">
+            <ul style="list-style:none;">
+
+                <li class="factRow">
+                    <span class="factLabel">Role</span>
+                    <span class="factValue">Add your role here</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Company</span>
+                    <span class="factValue">Add company name</span>
+                </li>
+
+                <li class="factRow">
+                    <span class="factLabel">Period</span>
+                    <span class="factValue">Month Year &ndash; Present</span>
+                </li>
+
+                <li class="factRow" style="border-bottom:none;">
+                    <span class="factLabel">What I did</span>
+                    <span class="factValue">A short line on your responsibilities or what you built.</span>
+                </li>
+
+            </ul>
+        </div>
+
+        <button class="scrollDown" data-target="#photography" aria-label="Scroll to Hobbies" style="position:absolute; left:50%; bottom:32px;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
         </button>
 
@@ -316,7 +632,7 @@
         <div class="sectionIntro">
 
             <p class="eyebrow">
-                Hobby 01
+                Hobbies
             </p>
 
             <h2 class="serifHeading" style="font-size:clamp(30px, 4vw, 52px);">
@@ -330,67 +646,147 @@
 
         </div>
 
-        <!-- Masonry grid — swap src="..." once you have real photos -->
-        <div class="photoGrid" style="padding:0 4px;">
+        <!-- Category tabs -->
+        <div class="photoTabs">
+            <button class="photoTab active" data-tab="people">People</button>
+            <button class="photoTab" data-tab="places">Places</button>
+            <button class="photoTab" data-tab="things">Things</button>
+        </div>
 
-            <div class="photoItem">
+        <!-- People -->
+        <div class="photoGrid photoTabPanel active" data-panel="people" style="padding:0 4px;">
+
+            <div class="photoItem" data-caption="People">
                 <div class="photoPlaceholder--tall photoPlaceholder">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Your photo</span>
                 </div>
             </div>
 
-            <div class="photoItem">
+            <div class="photoItem" data-caption="People">
                 <div class="photoPlaceholder">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Your photo</span>
                 </div>
             </div>
 
-            <div class="photoItem">
+            <div class="photoItem" data-caption="People">
                 <div class="photoPlaceholder--sq photoPlaceholder">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Your photo</span>
                 </div>
             </div>
 
-            <div class="photoItem">
+            <div class="photoItem" data-caption="People">
+                <div class="photoPlaceholder--tall photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="People">
                 <div class="photoPlaceholder">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Your photo</span>
                 </div>
             </div>
 
-            <div class="photoItem">
-                <div class="photoPlaceholder--tall photoPlaceholder">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
-                    <span>Your photo</span>
-                </div>
-            </div>
-
-            <div class="photoItem">
+            <div class="photoItem" data-caption="People">
                 <div class="photoPlaceholder--sq photoPlaceholder">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Your photo</span>
                 </div>
             </div>
 
-            <div class="photoItem">
-                <div class="photoPlaceholder photoPlaceholder">
+        </div>
+
+        <!-- Places -->
+        <div class="photoGrid photoTabPanel" data-panel="places" style="padding:0 4px; display:none;">
+
+            <div class="photoItem" data-caption="Places">
+                <div class="photoPlaceholder">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Your photo</span>
                 </div>
             </div>
 
-            <div class="photoItem">
+            <div class="photoItem" data-caption="Places">
                 <div class="photoPlaceholder--tall photoPlaceholder">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Your photo</span>
                 </div>
             </div>
 
-            <div class="photoItem">
-                <div class="photoPlaceholder photoPlaceholder">
+            <div class="photoItem" data-caption="Places">
+                <div class="photoPlaceholder--sq photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="Places">
+                <div class="photoPlaceholder--tall photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="Places">
+                <div class="photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="Places">
+                <div class="photoPlaceholder--sq photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Things -->
+        <div class="photoGrid photoTabPanel" data-panel="things" style="padding:0 4px; display:none;">
+
+            <div class="photoItem" data-caption="Things">
+                <div class="photoPlaceholder--sq photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="Things">
+                <div class="photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="Things">
+                <div class="photoPlaceholder--tall photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="Things">
+                <div class="photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="Things">
+                <div class="photoPlaceholder--sq photoPlaceholder">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
+                    <span>Your photo</span>
+                </div>
+            </div>
+
+            <div class="photoItem" data-caption="Things">
+                <div class="photoPlaceholder--tall photoPlaceholder">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Your photo</span>
                 </div>
@@ -399,7 +795,7 @@
         </div>
 
         <p class="addPhotoNote">
-            Replace placeholders with your own shots — just swap the &lt;div&gt; blocks for &lt;img&gt; tags
+            Replace placeholders — swap each inner &lt;div&gt; for &lt;img src="..." alt="..."&gt; and set data-caption to your shot title
         </p>
 
         <button class="scrollDown" data-target="#gaming" aria-label="Scroll to Gaming section" style="position:absolute; left:50%; bottom:32px;">
@@ -419,7 +815,7 @@
         <div class="sectionIntro">
 
             <p class="eyebrow">
-                Hobby 02
+                Hobbies
             </p>
 
             <h2 class="serifHeading" style="font-size:clamp(30px, 4vw, 52px);">
@@ -496,7 +892,7 @@
         <div class="sectionIntro">
 
             <p class="eyebrow">
-                Hobby 03
+                Hobbies
             </p>
 
             <h2 class="serifHeading" style="font-size:clamp(30px, 4vw, 52px);">
@@ -512,7 +908,7 @@
         <!-- 3-column grid of 16:9 in-game shots — swap placeholders with real screenshots -->
         <div class="gameShotGrid" style="margin-top:clamp(32px, 5vw, 56px);">
 
-            <div class="gameShotItem">
+            <div class="gameShotItem" data-caption="Ghost of Tsushima">
                 <div class="gameShotPlaceholder">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Screenshot</span>
@@ -520,7 +916,7 @@
                 <div class="gameShotLabel">Ghost of Tsushima</div>
             </div>
 
-            <div class="gameShotItem">
+            <div class="gameShotItem" data-caption="Red Dead Redemption 2">
                 <div class="gameShotPlaceholder">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Screenshot</span>
@@ -528,7 +924,7 @@
                 <div class="gameShotLabel">Red Dead Redemption 2</div>
             </div>
 
-            <div class="gameShotItem">
+            <div class="gameShotItem" data-caption="Cyberpunk 2077">
                 <div class="gameShotPlaceholder">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Screenshot</span>
@@ -536,7 +932,7 @@
                 <div class="gameShotLabel">Cyberpunk 2077</div>
             </div>
 
-            <div class="gameShotItem">
+            <div class="gameShotItem" data-caption="Elden Ring">
                 <div class="gameShotPlaceholder">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Screenshot</span>
@@ -544,7 +940,7 @@
                 <div class="gameShotLabel">Elden Ring</div>
             </div>
 
-            <div class="gameShotItem">
+            <div class="gameShotItem" data-caption="Spider-Man 2">
                 <div class="gameShotPlaceholder">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Screenshot</span>
@@ -552,7 +948,7 @@
                 <div class="gameShotLabel">Spider-Man 2</div>
             </div>
 
-            <div class="gameShotItem">
+            <div class="gameShotItem" data-caption="Ghost of Tsushima">
                 <div class="gameShotPlaceholder">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>
                     <span>Screenshot</span>
@@ -601,18 +997,107 @@
 </main>
 
 <script src="../scripts/script.js" defer></script>
+
+<!-- ===================================
+     LIGHTBOX
+=================================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="lightboxContent"></div>
+    <p class="lightbox__caption" id="lightboxCaption"></p>
+</div>
+
 <script>
-    // dark mode toggle — same pattern as script.js (self-contained for this page)
-    var darkModeToggle = document.getElementById('darkModeToggle');
-    if (darkModeToggle) {
-        var toggleIcon = darkModeToggle.querySelector('img');
-        darkModeToggle.addEventListener('click', function () {
-            document.body.classList.toggle('dark-mode');
-            var isDark = document.body.classList.contains('dark-mode');
-            toggleIcon.src  = isDark ? toggleIcon.dataset.light : toggleIcon.dataset.dark;
-            toggleIcon.alt  = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+(function () {
+
+    /* ── Tab switching ── */
+    var tabs   = document.querySelectorAll('.photoTab');
+    var panels = document.querySelectorAll('.photoTabPanel');
+
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            var target = this.dataset.tab;
+
+            tabs.forEach(function (t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+
+            panels.forEach(function (panel) {
+                if (panel.dataset.panel === target) {
+                    panel.style.display = '';
+                    panel.classList.add('active');
+                } else {
+                    panel.style.display = 'none';
+                    panel.classList.remove('active');
+                }
+            });
         });
+    });
+
+    /* ── Lightbox ── */
+    var lightbox        = document.getElementById('lightbox');
+    var lightboxContent = document.getElementById('lightboxContent');
+    var lightboxCaption = document.getElementById('lightboxCaption');
+    var lightboxClose   = document.getElementById('lightboxClose');
+
+    function openLightbox(imgSrc, caption) {
+        lightboxContent.innerHTML = '';
+
+        if (imgSrc) {
+            var img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = caption || '';
+            lightboxContent.appendChild(img);
+        } else {
+            // no real image yet — show placeholder
+            lightboxContent.innerHTML =
+                '<div class="lightbox__placeholder">' +
+                '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="7.5" r="1"/></svg>' +
+                '<span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;">No image yet</span>' +
+                '</div>';
+        }
+
+        lightboxCaption.textContent = caption || '';
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    /* photoItem click */
+    document.querySelectorAll('.photoItem').forEach(function (item) {
+        item.addEventListener('click', function () {
+            var img     = item.querySelector('img');
+            var caption = item.dataset.caption || '';
+            openLightbox(img ? img.src : null, caption);
+        });
+    });
+
+    /* gameShotItem click */
+    document.querySelectorAll('.gameShotItem').forEach(function (item) {
+        item.addEventListener('click', function () {
+            var img     = item.querySelector('img');
+            var caption = item.dataset.caption || item.querySelector('.gameShotLabel')?.textContent || '';
+            openLightbox(img ? img.src : null, caption);
+        });
+    });
+
+    /* close on button, backdrop click, or Escape */
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) { closeLightbox(); }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { closeLightbox(); }
+    });
+
+})();
 </script>
 
 </body>

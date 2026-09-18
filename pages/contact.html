@@ -7,63 +7,12 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="../assets/icon.png" sizes="32x32">
-
-    <style>
-
-        /* Shared full-viewport section shell (mirrors index.html) */
-        .fullSection{
-            position:relative;
-            min-height:calc(100vh - 96px);
-            scroll-margin-top:96px;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-        }
-
-        .centerBlock{
-            align-items:center;
-            text-align:center;
-        }
-
-        .sectionIntro{
-            align-self:center;
-            margin-bottom:clamp(32px, 5vw, 56px);
-            text-align:center;
-        }
-
-        .eyebrow{
-            margin-bottom:20px;
-            font-size:14px;
-            font-weight:500;
-            letter-spacing:3px;
-            text-transform:uppercase;
-            color:var(--color-text);
-            text-align:center;
-        }
-
-        .serifHeading{
-            font-family:"Playfair Display", serif;
-            font-weight:700;
-            line-height:1.15;
-            letter-spacing:-1px;
-            text-align:center;
-        }
-
-        .bodyText{
-            font-size:17px;
-            line-height:1.9;
-            color:var(--color-muted);
-            text-align:justify;
-        }
-
-        @media (max-width:900px){
-            .fullSection{
-                min-height:calc(100vh - 160px);
-            }
-        }
-
-    </style>
 </head>
+
+<!-- Page-specific layout classes (.fullSection, .eyebrow, .bodyText, etc.)
+     all live in css/style.css now, in the "PAGE SECTION SHELLS" section —
+     so this page shares one copy of that CSS with index.html instead of
+     repeating it here. -->
 
 <body>
 

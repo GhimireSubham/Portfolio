@@ -55,12 +55,29 @@ if (ecomartCard) {
 
 var darkModeToggle = document.getElementById('darkModeToggle');
 
+(function () {
+    if (sessionStorage.getItem('darkMode') === 'on') {
+        document.body.classList.add('dark-mode');
+    }
+})();
+
 if (darkModeToggle) {
     var darkModeToggleIcon = darkModeToggle.querySelector('img');
 
-    darkModeToggle.addEventListener('click', function() {
+    if (document.body.classList.contains('dark-mode')) {
+        darkModeToggleIcon.src = darkModeToggleIcon.dataset.light;
+        darkModeToggleIcon.alt = 'Switch to light mode';
+    }
+
+    darkModeToggle.addEventListener('click', function () {
         document.body.classList.toggle('dark-mode');
         var isDark = document.body.classList.contains('dark-mode');
+
+        if (isDark) {
+            sessionStorage.setItem('darkMode', 'on');
+        } else {
+            sessionStorage.removeItem('darkMode');
+        }
 
         darkModeToggleIcon.src = isDark ? darkModeToggleIcon.dataset.light : darkModeToggleIcon.dataset.dark;
         darkModeToggleIcon.alt = isDark ? 'Switch to light mode' : 'Switch to dark mode';
@@ -77,4 +94,3 @@ for (var i = 0; i < scrollButtons.length; i++) {
         }
     });
 }
-

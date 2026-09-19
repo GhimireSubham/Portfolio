@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&family=Playfair+Display:wght@400..900&display=swap');
 
-/* ===================================
-   THEME TOKENS
-
-   --color-bg      60% — dominant surface
-   --color-surface 30% — secondary surface
-   --color-accent  10% — complementary / highlight
-=================================== */
-
 :root{
     --color-bg:#FFFFFF;
     --color-surface:#F5F3EE;
@@ -15,10 +7,6 @@
     --color-muted:#52606D;
     --color-accent:#1F2933;
 }
-
-/* ===================================
-   RESET
-=================================== */
 
 *{
     margin:0;
@@ -57,67 +45,32 @@ body{
     *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
 }
 
-/* ===================================
-   GLOBAL LAYOUT
-=================================== */
-
 main{
     width:1200px;
     max-width:calc(100% - 64px);
     margin:0 auto;
 }
 
-/* ===================================
-   PAGE SECTION SHELLS
-
-   These are the reusable "building block" classes
-   used on EVERY full-page section across the site
-   (Hero, About, Work, Contact, Message Form).
-
-   Instead of repeating this styling on every page,
-   each section just gets these class names in the HTML:
-
-     <section class="fullSection centerBlock">
-
-   Think of them like LEGO pieces — mix and match
-   the classes below to build a section's layout.
-=================================== */
-
-/* .fullSection
-   Makes a <section> take up (roughly) the full browser
-   height and centers its content vertically.
-   Used by: every major section on every page. */
 .fullSection{
     position:relative;
-    min-height:calc(100vh - 96px); /* 96px = header height, so content isn't hidden behind it */
-    scroll-margin-top:96px;        /* keeps the header from covering the top when jumping to this section via a link */
+    min-height:calc(100vh - 96px); 
+    scroll-margin-top:96px;        
     display:flex;
     flex-direction:column;
-    justify-content:center;        /* vertically centers the content */
+    justify-content:center;        
 }
 
-/* .centerBlock
-   Add this alongside .fullSection when you also want
-   the content horizontally centered and center-aligned text.
-   Used by: Hero section, Contact section, Message Form section. */
 .centerBlock{
     align-items:center;
     text-align:center;
 }
 
-/* .sectionIntro
-   Wraps the small "eyebrow" label + big heading that
-   introduces a section (e.g. "About" / "OVERVIEW").
-   Used by: About, Work, Contact, Message Form. */
 .sectionIntro{
     align-self:center;
-    margin-bottom:clamp(32px, 5vw, 56px); /* space below the intro before the section's main content */
+    margin-bottom:clamp(32px, 5vw, 56px); 
     text-align:center;
 }
 
-/* .eyebrow
-   The small uppercase label above a heading,
-   e.g. "About", "Selected Work", "Get In Touch". */
 .eyebrow{
     margin-bottom:20px;
     font-size:14px;
@@ -128,10 +81,6 @@ main{
     text-align:center;
 }
 
-/* .serifHeading
-   The big decorative heading style (uses the Playfair
-   Display serif font) — e.g. "OVERVIEW", "Let's talk
-   about your next project." */
 .serifHeading{
     font-family:"Playfair Display", serif;
     font-weight:700;
@@ -140,9 +89,6 @@ main{
     text-align:center;
 }
 
-/* .bodyText
-   Muted, easy-to-read paragraph text used for
-   longer descriptions (About paragraph, Contact intro). */
 .bodyText{
     font-size:clamp(14px, 2.4vw, 17px);
     line-height:1.9;
@@ -150,19 +96,11 @@ main{
     text-align:justify;
 }
 
-/* On small screens the header wraps to a taller stack
-   (see the header/nav mobile rules below), so we need
-   extra breathing room here too — otherwise section content
-   and the scroll-down arrow get tucked under the header. */
 @media (max-width:900px){
     .fullSection{
         min-height:calc(100vh - 160px);
     }
 }
-
-/* ===================================
-   HEADER  (external — kept untouched)
-=================================== */
 
 header {
     position: sticky;
@@ -177,7 +115,7 @@ header {
     -webkit-backdrop-filter: blur(12.4px);
     border: 1px solid rgba(255, 255, 255, 0.08);
 
-    /* Smooth transition back to neutral */
+    
     transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
@@ -216,10 +154,6 @@ nav{
     opacity: 1;
 }
 
-/* ===================================
-   DARK MODE TOGGLE
-=================================== */
-
 .darkModeToggle{
     position:absolute;
     right:48px;
@@ -249,7 +183,6 @@ nav{
     outline:2px solid var(--color-accent);
     outline-offset:3px;
 }
-
 
 .navLinks{
     display:flex;
@@ -291,11 +224,7 @@ nav{
         gap:24px;
     }
 
-    /* On desktop these sit absolutely so navLinks stays perfectly
-       centered regardless of their width. On mobile nav stacks
-       vertically, so absolute positioning made them overlap the
-       nav links row instead — switch to normal flow so they stack
-       in DOM order (home, links, toggle) instead. */
+    
     .homeButton,
     .darkModeToggle{
         position:static;
@@ -304,20 +233,10 @@ nav{
     main{ max-width:calc(100% - 40px); }
 }
 
-/* ===================================
-   IMAGES
-=================================== */
-
 img{
     display:block;
     max-width:100%;
 }
-
-/* ===================================
-   SCROLL-DOWN CUE
-   Needs :hover / :focus-visible / keyframes,
-   so it stays here rather than inline.
-=================================== */
 
 .scrollDown{
     width:44px;
@@ -355,12 +274,6 @@ img{
     50%{ transform:translate(-50%,8px); }
 }
 
-/* Pill variant of .scrollDown — used for text + icon CTAs like
-   "Send a quick message". Reuses scrollDown's positioning and
-   click-to-scroll JS, but the constant bounce makes a wide pill
-   an unstable click target (mousedown/mouseup can land in different
-   spots as it shifts), so the animation is turned off here and
-   swapped for a hover-lift instead. */
 .scrollCta{
     width:auto;
     height:auto;
@@ -384,15 +297,6 @@ img{
     transform:translate(-50%, -4px);
 }
 
-/* ===================================
-   ABOUT — FACT LIST
-   The "Studying at / Focus / Interested in / ..."
-   rows in the About section. Each row is a
-   <li class="factRow"> containing a label + value.
-=================================== */
-
-/* .factRow — one row, label on the left, value on the right,
-   with a thin divider line underneath. */
 .factRow{
     display:flex;
     justify-content:space-between;
@@ -402,29 +306,20 @@ img{
     border-bottom:1px solid color-mix(in srgb, var(--color-muted) 25%, transparent);
 }
 
-/* .factLabel — the small uppercase left-hand label, e.g. "FOCUS" */
 .factLabel{
     font-size:clamp(11px, 2vw, 13px);
     letter-spacing:2px;
     text-transform:uppercase;
     color:var(--color-muted);
-    white-space:nowrap; /* keeps the label from wrapping to a second line */
+    white-space:nowrap; 
     text-align:center;
 }
 
-/* .factValue — the right-hand answer text, e.g. "Fullstack Development & UI/UX Design" */
 .factValue{
     font-size:clamp(13px, 2.4vw, 15px);
     text-align:center;
 }
 
-/* ===================================
-   SELECTED WORK — project card text
-   The tag / title / description text inside
-   each project card (Daraz, EcoMart, etc.).
-=================================== */
-
-/* .cardTag — small label above the title, e.g. "UI Redesign · Case Study" */
 .cardTag{
     margin-bottom:22px;
     font-size:12px;
@@ -435,7 +330,6 @@ img{
     text-align:center;
 }
 
-/* .cardTitle — the project name, e.g. "Daraz.com.np Redesign" */
 .cardTitle{
     margin-bottom:16px;
     font-family:"Playfair Display", serif;
@@ -444,7 +338,6 @@ img{
     text-align:center;
 }
 
-/* .cardDesc — the short paragraph describing the project */
 .cardDesc{
     margin-bottom:28px;
     font-size:15px;
@@ -452,12 +345,6 @@ img{
     color:var(--color-muted);
     text-align:justify;
 }
-
-/* ===================================
-   SELECTED WORK — cards & preview shots
-   Kept external only for the :hover states
-   (base layout/spacing is inlined in HTML).
-=================================== */
 
 .workCard{
     transition:background-color .4s ease, transform .35s ease;
@@ -486,11 +373,6 @@ img{
     box-shadow:0 18px 34px -14px color-mix(in srgb, var(--color-text) 30%, transparent);
 }
 
-
-/* ===================================
-   CONTACT CTA — kept external for :hover
-=================================== */
-
 .ctaButton{
     border:1px solid var(--color-accent); 
     background:transparent;
@@ -509,10 +391,6 @@ img{
     background:#1F2933;
     color: #fff;
 }
-
-/* ===================================
-   SOCIAL ICON ROW — Contact page
-=================================== */
 
 .socialRow{
     display:flex;
@@ -554,10 +432,6 @@ body.dark-mode .iconButton{
     background:#1F2933;
     box-shadow:0 4px 12px rgba(255, 255, 255, 0.12);
 }
-
-/* ===================================
-   CONTACT FORM
-=================================== */
 
 .formField{
     display:flex;
@@ -606,11 +480,6 @@ body.dark-mode .iconButton{
     opacity:.6;
 }
 
-/* ===================================
-   FOOTER  (external — kept untouched)
-=================================== */
-
-
 @media (max-width:900px){
     .siteFooter{
         flex-direction:column;
@@ -623,18 +492,6 @@ body.dark-mode .iconButton{
     }
 }
 
-/* ===================================
-   THEME VARIANTS
-
-   Triggered on <body> by script.js when
-   hovering a Selected Work card. Values
-   echo each project's own screenshot —
-   Daraz's orange marketplace look and
-   EcoMart's earthy sustainable-green look —
-   following the 60/30/10 UI color rule.
-=================================== */
-
-/* Daraz Theme */
 body.theme-daraz {
     --color-bg: #F1F1F2;
     --color-text: #1F2933;
@@ -650,7 +507,6 @@ body.theme-daraz header {
     transition: background-color 0.4s ease;
 }
 
-/* EcoMart Theme */
 body.theme-ecomart {
     --color-bg: #eef6f1;
     --color-surface: #A4D039;
@@ -665,15 +521,6 @@ body.theme-ecomart header {
     transition: background-color 0.4s ease;
 }
 
-/* ===================================
-   DARK MODE
-
-   Background uses the same color as the
-   hero heading text (--color-text default,
-   #1F2933) rather than pure black. All
-   text becomes pure white.
-=================================== */
-
 body.dark-mode{
     --color-bg:#1F2933;
     --color-text:#fff;
@@ -681,18 +528,15 @@ body.dark-mode{
     --color-accent:#fff;
 }
 
-/* Icons assumed dark by default — invert to read on the dark surface */
 body.dark-mode .homeButton img,
 body.dark-mode .darkModeToggle img{
     filter:invert(1);
 }
 
-/* light.svg reads smaller than dark.svg at the same box size — scale it up */
 body.dark-mode .darkModeToggle img{
     transform:scale(1.25);
 }
 
-/* scrollDown circle is hardcoded white — swap it so the (now white) icon is visible */
 body.dark-mode .scrollDown{
     background:#1F2933;
     box-shadow:0 4px 12px rgba(255, 255, 255, 0.12);
@@ -702,22 +546,10 @@ body.dark-mode .scrollDown:hover{
     box-shadow:0 4px 12px rgba(255, 255, 255, 0.18);
 }
 
-/* ctaButton hover is hardcoded to the light-mode accent — invert for dark mode */
 body.dark-mode .ctaButton:hover{
     background:#fff;
     color:#1F2933;
 }
-
-/* ===================================
-   DARK MODE + WORK-CARD HOVER THEMES
-
-   Daraz/EcoMart normally swap --color-bg
-   to a light surface on hover, which would
-   fight dark mode's white-on-dark text.
-   In dark mode, keep the dark surface and
-   just tint the header with the project's
-   brand color instead.
-=================================== */
 
 body.dark-mode.theme-daraz{
     --color-bg:#1F2933;
@@ -744,14 +576,14 @@ body.dark-mode.theme-ecomart header{
 
 @media (max-width: 768px) {
 
-    /* Top text */
+    
     #hero .eyebrow{
         font-size:12px;
         letter-spacing:2px;
         margin-bottom:16px;
     }
 
-    /* SUBHAM GHIMIRE */
+    
     #hero h1{
         font-size:clamp(64px, 18vw, 96px) !important;
         line-height:0.9;
@@ -759,7 +591,7 @@ body.dark-mode.theme-ecomart header{
         margin-bottom:20px !important;
     }
 
-    /* Description */
+    
     #hero p:last-of-type{
         font-size:14px !important;
         line-height:1.7;
@@ -767,4 +599,3 @@ body.dark-mode.theme-ecomart header{
     }
 
 }
-

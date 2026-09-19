@@ -8,15 +8,12 @@
     <link rel="icon" type="image/png" href="assets/icon.png" sizes="32x32">
 
     <link rel="stylesheet" href="css/style.css">
-</head>
 
-<!-- Page-specific layout classes (.fullSection, .eyebrow, .cardTitle, etc.)
-     all live in css/style.css now, in the "PAGE SECTION SHELLS" and
-     "SELECTED WORK" sections — so both index.html and contact.html
-     can share one copy instead of repeating the CSS in each file. -->
+</head>
 
 <body>
 
+<script>if(sessionStorage.getItem('darkMode')==='on')document.body.classList.add('dark-mode');</script>
 
 <header>
 
@@ -29,7 +26,7 @@
         <ul class="navLinks">
             <li><a href="#about" id="overviewLink">Overview</a></li>
             <li><a href="#work" id="worksLink">My Works</a></li>
-            <li><a href="pages/hobbies.html">About Me</a></li>
+            <li><a href="pages/about.html">About Me</a></li>
             <li><a href="pages/contact.html">Contact</a></li>
         </ul>
 
@@ -43,9 +40,7 @@
 
 <main>
 
-    <!-- ===================================
-         HERO — full viewport
-    =================================== -->
+    
 
     <section id="hero" class="fullSection centerBlock" style="padding:64px 24px;">
 
@@ -72,11 +67,7 @@
 
     </section>
 
-    <!-- ===================================
-         ABOUT — full viewport
-         Layout: centered eyebrow+heading intro,
-         then the two-column content below.
-    =================================== -->
+    
 
     <section id="about" class="fullSection" style="padding:96px 0;">
 
@@ -120,6 +111,12 @@
 
                 </ul>
 
+                <div style="text-align:center; margin-top:48px;">
+                    <a href="pages/about.html" class="ctaButton" style="display:inline-block; padding:18px 40px; text-decoration:none; font-size:13px; font-weight:500; letter-spacing:2px; text-transform:uppercase;">
+                        More About Me &rarr;
+                    </a>
+                </div>
+
             </div>
 
         </div>
@@ -130,11 +127,7 @@
 
     </section>
 
-    <!-- ===================================
-         SELECTED WORK — full viewport
-         Layout matches About: centered eyebrow+heading
-         intro, then the content (project cards) below.
-    =================================== -->
+    
 
     <section id="work" class="fullSection" style="padding:80px 0;">
 
@@ -180,7 +173,6 @@
 
             </article>
 
-
             <article class="workCard workCard--ecomart" style="padding:28px; display:flex; flex-direction:column; border-radius:2px;">
 
                 <p class="cardTag">
@@ -211,11 +203,7 @@
 
     </section>
 
-    <!-- ===================================
-         CONTACT CTA — full viewport
-         Layout matches About: centered eyebrow+heading
-         intro, then the content (CTA button) below.
-    =================================== -->
+    
 
     <section id="contact" class="fullSection centerBlock" style="padding:96px 24px;">
 
@@ -238,7 +226,6 @@
     </section>
 
 </main>
-
 
 <script src="scripts/script.js" defer></script>
 

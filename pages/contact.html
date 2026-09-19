@@ -7,14 +7,12 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="../assets/icon.png" sizes="32x32">
+
 </head>
 
-<!-- Page-specific layout classes (.fullSection, .eyebrow, .bodyText, etc.)
-     all live in css/style.css now, in the "PAGE SECTION SHELLS" section —
-     so this page shares one copy of that CSS with index.html instead of
-     repeating it here. -->
-
 <body>
+
+<script>if(sessionStorage.getItem('darkMode')==='on')document.body.classList.add('dark-mode');</script>
 
 <header>
 
@@ -27,7 +25,7 @@
         <ul class="navLinks">
             <li><a href="../index.html#about">Overview</a></li>
             <li><a href="../index.html#work">My Works</a></li>
-            <li><a href="hobbies.html">About Me</a></li>
+            <li><a href="about.html">About Me</a></li>
             <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
 
@@ -41,9 +39,7 @@
 
 <main>
 
-    <!-- ===================================
-         CONTACT — full viewport
-    =================================== -->
+    
 
     <section id="contact" class="fullSection centerBlock" style="padding:96px 24px;">
 
@@ -116,9 +112,7 @@
 
     </section>
 
-    <!-- ===================================
-         MESSAGE FORM — full viewport
-    =================================== -->
+    
 
     <section id="message-form" class="fullSection centerBlock" style="padding:96px 24px;">
 

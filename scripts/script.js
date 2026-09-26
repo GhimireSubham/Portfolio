@@ -1,37 +1,3 @@
-var overviewLink = document.getElementById('overviewLink');
-var heroSection = document.getElementById('hero');
-
-var worksLink = document.getElementById('worksLink');
-var workSection = document.getElementById('work');
-
-var aboutSection = document.getElementById('about');
-
-if (overviewLink && aboutSection) {
-    window.addEventListener('scroll', function () {
-        var aboutRect = aboutSection.getBoundingClientRect();
-
-        if (
-            aboutRect.top <= window.innerHeight / 2 &&
-            aboutRect.bottom >= window.innerHeight / 2
-        ) {
-            overviewLink.classList.add('active');
-        } else {
-            overviewLink.classList.remove('active');
-        }
-    });
-}
-
-if (worksLink && workSection) {
-    window.addEventListener('scroll', function() {
-        var workRect = workSection.getBoundingClientRect();
-        if (workRect.top <= window.innerHeight / 2 && workRect.bottom >= window.innerHeight / 2) {
-            worksLink.classList.add('active');
-        } else {
-            worksLink.classList.remove('active');
-        }
-    });
-}
-
 var darazCard = document.querySelector('.workCard--daraz');
 var ecomartCard = document.querySelector('.workCard--ecomart');
 

@@ -175,7 +175,7 @@
                 </div>
             </article>
 
-            <article class="workCard" data-tags="design">
+            <article class="workCard workCard--rdr2" data-tags="design">
                 <img src="../assets/rdr2.png" alt="RDR2 Game Home Screen Redesign" class="projectShot">
                 <p class="cardTag">UI Redesign &middot; Game Interface</p>
                 <h3 class="cardTitle">RDR2 Game Home Screen</h3>
@@ -187,7 +187,7 @@
                 </div>
             </article>
 
-            <article class="workCard" data-tags="dev">
+            <article class="workCard workCard--dialga" data-tags="dev">
                 <img src="../assets/dialga.png" alt="Dialga — Brand Portfolio" class="projectShot">
                 <p class="cardTag">Brand Portfolio &middot; Collaborative</p>
                 <h3 class="cardTitle">Dialga</h3>
@@ -208,6 +208,20 @@
                 <p class="cardDesc">EcoMart is an e-commerce platform developed as college coursework, built to explore real-world front-end development for online retail.</p>
                 <a href="https://subghimire40.github.io/ecoMart/" class="workLink" target="_blank" rel="noopener" style="margin-bottom:32px; color:var(--color-text); text-decoration:none; font-size:12px; font-weight:500; letter-spacing:2px; text-transform:uppercase; text-align:center;">View Project &rarr;</a>
                 <div class="cardTools">
+                    <span class="toolTag">HTML</span>
+                    <span class="toolTag">CSS</span>
+                    <span class="toolTag">JavaScript</span>
+                </div>
+            </article>
+
+            <article class="workCard workCard--portfolio" data-tags="design dev">
+                <img src="../assets/portfolio.png" alt="This Portfolio" class="projectShot">
+                <p class="cardTag">Personal Site &middot; Design + Development</p>
+                <h3 class="cardTitle">This Portfolio</h3>
+                <p class="cardDesc">The very site you're on — designed and built from scratch, covering everything from the UI system to the interactive dark mode and per-project hover theming.</p>
+                <a href="../index.html" class="workLink" style="margin-bottom:32px; color:var(--color-text); text-decoration:none; font-size:12px; font-weight:500; letter-spacing:2px; text-transform:uppercase; text-align:center;">View Project &rarr;</a>
+                <div class="cardTools">
+                    <span class="toolTag">Figma</span>
                     <span class="toolTag">HTML</span>
                     <span class="toolTag">CSS</span>
                     <span class="toolTag">JavaScript</span>
@@ -245,16 +259,19 @@
         });
     });
 
-    var darazCard   = document.querySelector('.workCard--daraz');
-    var ecomartCard = document.querySelector('.workCard--ecomart');
-    if (darazCard) {
-        darazCard.addEventListener('mouseenter', function () { document.body.classList.add('theme-daraz'); });
-        darazCard.addEventListener('mouseleave', function () { document.body.classList.remove('theme-daraz'); });
-    }
-    if (ecomartCard) {
-        ecomartCard.addEventListener('mouseenter', function () { document.body.classList.add('theme-ecomart'); });
-        ecomartCard.addEventListener('mouseleave', function () { document.body.classList.remove('theme-ecomart'); });
-    }
+    var themedCards = [
+        { el: document.querySelector('.workCard--daraz'),     theme: 'theme-daraz' },
+        { el: document.querySelector('.workCard--ecomart'),   theme: 'theme-ecomart' },
+        { el: document.querySelector('.workCard--rdr2'),      theme: 'theme-rdr2' },
+        { el: document.querySelector('.workCard--dialga'),    theme: 'theme-dialga' },
+        { el: document.querySelector('.workCard--portfolio'), theme: 'theme-portfolio' }
+    ];
+
+    themedCards.forEach(function (item) {
+        if (!item.el) return;
+        item.el.addEventListener('mouseenter', function () { document.body.classList.add(item.theme); });
+        item.el.addEventListener('mouseleave', function () { document.body.classList.remove(item.theme); });
+    });
 })();
 </script>
 

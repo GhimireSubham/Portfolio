@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Works | Subham Ghimire</title>
+
+    <link rel="icon" type="image/png" href="../assets/icon.png" sizes="32x32">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+
+        /* ── Page-specific layout ── */
+        .worksHero {
+            padding: 96px 0 72px;
+            border-bottom: 1px solid color-mix(in srgb, var(--color-muted) 20%, transparent);
+        }
+
+        .worksHero .eyebrow {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .worksHero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            color: var(--color-text);
+            margin-bottom: 24px;
+        }
+
+        .worksHero p {
+            font-size: clamp(14px, 2vw, 16px);
+            line-height: 1.9;
+            color: var(--color-muted);
+            max-width: 480px;
+        }
+
+        /* ── Filter bar ── */
+        .filterBar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 40px 0 48px;
+        }
+
+        .filterBtn {
+            padding: 8px 20px;
+            border: 1px solid color-mix(in srgb, var(--color-muted) 30%, transparent);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--color-muted);
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+        }
+
+        .filterBtn:hover {
+            border-color: var(--color-text);
+            color: var(--color-text);
+        }
+
+        .filterBtn.active {
+            background: var(--color-text);
+            color: var(--color-bg);
+            border-color: var(--color-text);
+        }
+
+        /* ── Works grid ── */
+        .worksGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+            margin-bottom: 120px;
+        }
+
+        /* Extend existing workCard with image support */
+        .workCard {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 2px;
+        }
+
+        .workCard + .workCard {
+            border-left: 1px solid color-mix(in srgb, var(--color-muted) 20%, transparent);
+        }
+
+        /* Project screenshot */
+        .projectShot {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            object-position: top;
+            margin-bottom: 28px;
+            border-radius: 2px;
+        }
+
+        /* Arrow link matches existing workLink style */
+        .workLink {
+            display: inline-block;
+            margin-bottom: 32px;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            transition: color .3s ease;
+        }
+
+        .workLink:hover {
+            color: var(--color-accent);
+        }
+
+        /* Tool tags */
+        .cardTools {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: auto;
+            padding-top: 16px;
+        }
+
+        .toolTag {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-muted);
+            padding: 4px 10px;
+            border: 1px solid color-mix(in srgb, var(--color-muted) 25%, transparent);
+            border-radius: 2px;
+        }
+
+        /* Hidden cards during filter */
+        .workCard[data-hidden="true"] {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .workCard + .workCard {
+                border-left: none;
+                border-top: 1px solid color-mix(in srgb, var(--color-muted) 20%, transparent);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<script>if(sessionStorage.getItem('darkMode')==='on')document.body.classList.add('dark-mode');</script>
+
+<header>
+    <nav>
+        <a href="../index.html" class="homeButton">
+            <img src="../assets/home.svg" alt="Home" width="18" height="18">
+        </a>
+
+        <ul class="navLinks">
+            <li><a href="../index.html#about">Overview</a></li>
+            <li><a href="works.html" class="active">My Works</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="darkModeToggle" id="darkModeToggle" aria-label="Toggle dark mode">
+            <img src="../assets/dark.svg" alt="Toggle dark mode" width="18" height="18"
+                 data-dark="../assets/dark.svg"
+                 data-light="../assets/light.svg">
+        </button>
+    </nav>
+</header>
+
+<main>
+
+    <!-- Page hero -->
+    <div class="worksHero">
+        <p class="eyebrow">Portfolio</p>
+        <h1>My Works</h1>
+        <p>A mix of academic and personal projects — showing both the design process and the implementation behind it.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filterBar">
+        <button class="filterBtn active" data-filter="all">All</button>
+        <button class="filterBtn" data-filter="design">Design</button>
+        <button class="filterBtn" data-filter="dev">Development</button>
+    </div>
+
+    <!-- Works grid -->
+    <div class="worksGrid" id="worksGrid">
+
+        <!-- Daraz Redesign -->
+        <article class="workCard workCard--daraz" data-tags="design" style="border-right: 1px solid color-mix(in srgb, var(--color-muted) 20%, transparent);">
+
+            <img
+                src="../assets/daraz.jpg"
+                alt="Daraz.com.np Redesign"
+                class="projectShot"
+            >
+
+            <p class="cardTag">UI Redesign &middot; Case Study</p>
+
+            <h3 class="cardTitle">Daraz.com.np Redesign</h3>
+
+            <p class="cardDesc">
+                A UI redesign case study of Daraz.com.np, focused on improving usability
+                and visual clarity for one of Nepal's largest e-commerce platforms.
+            </p>
+
+            <a href="https://www.figma.com/proto/6S8n9WeEFWRbaRE1Iao4KX/Daraz.com.np-%7C-Re-designed?node-id=201-63&t=8VQKBX7LRQygTDNG-1"
+               class="workLink"
+               target="_blank" rel="noopener">
+                View Project &rarr;
+            </a>
+
+            <div class="cardTools">
+                <span class="toolTag">Figma</span>
+                <span class="toolTag">Prototyping</span>
+                <span class="toolTag">UX Research</span>
+            </div>
+
+        </article>
+
+        <!-- EcoMart -->
+        <article class="workCard workCard--ecomart" data-tags="dev">
+
+            <img
+                src="../assets/ecomart.jpg"
+                alt="EcoMart"
+                class="projectShot"
+            >
+
+            <p class="cardTag">E-commerce &middot; College Coursework</p>
+
+            <h3 class="cardTitle">EcoMart</h3>
+
+            <p class="cardDesc">
+                EcoMart is an e-commerce platform developed as college coursework, built
+                to explore real-world front-end development for online retail.
+            </p>
+
+            <a href="https://subghimire40.github.io/ecoMart/"
+               class="workLink"
+               target="_blank" rel="noopener">
+                View Project &rarr;
+            </a>
+
+            <div class="cardTools">
+                <span class="toolTag">HTML</span>
+                <span class="toolTag">CSS</span>
+                <span class="toolTag">JavaScript</span>
+            </div>
+
+        </article>
+
+    </div>
+
+</main>
+
+<script src="../scripts/script.js" defer></script>
+
+<script>
+(function () {
+
+    /* ── Filter ── */
+    var filterBtns = document.querySelectorAll('.filterBtn');
+    var cards = document.querySelectorAll('#worksGrid .workCard');
+
+    filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            filterBtns.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+
+            var filter = btn.dataset.filter;
+
+            cards.forEach(function (card) {
+                var tags = (card.dataset.tags || '').split(' ');
+                if (filter === 'all' || tags.indexOf(filter) !== -1) {
+                    card.removeAttribute('data-hidden');
+                } else {
+                    card.setAttribute('data-hidden', 'true');
+                }
+            });
+        });
+    });
+
+    /* ── Card hover themes ── */
+    var darazCard  = document.querySelector('.workCard--daraz');
+    var ecomartCard = document.querySelector('.workCard--ecomart');
+
+    if (darazCard) {
+        darazCard.addEventListener('mouseenter', function () { document.body.classList.add('theme-daraz'); });
+        darazCard.addEventListener('mouseleave', function () { document.body.classList.remove('theme-daraz'); });
+    }
+
+    if (ecomartCard) {
+        ecomartCard.addEventListener('mouseenter', function () { document.body.classList.add('theme-ecomart'); });
+        ecomartCard.addEventListener('mouseleave', function () { document.body.classList.remove('theme-ecomart'); });
+    }
+
+})();
+</script>
+
+</body>
+</html>

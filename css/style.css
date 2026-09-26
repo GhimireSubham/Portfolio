@@ -492,75 +492,25 @@ body.dark-mode .iconButton{
     }
 }
 
+/* Light mode: hovering a project card only tints the page background; header stays as-is (white/translucent) */
 body.theme-daraz {
     --color-bg: #F1F1F2;
-    --color-text: #1F2933;
-    --color-muted: #52606D;
-    --color-accent: #fff;
-}
-
-body.theme-daraz header {
-    background-color: #F08033;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-color: transparent;
-    transition: background-color 0.4s ease;
 }
 
 body.theme-ecomart {
     --color-bg: #eef6f1;
-    --color-surface: #A4D039;
-    --color-accent: #2F6F3E;
-}
-
-body.theme-ecomart header {
-    background-color: #FAFAF8;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-color: transparent;
-    transition: background-color 0.4s ease;
 }
 
 body.theme-rdr2 {
     --color-bg: #FBEAEA;
-    --color-surface: #C1272D;
-    --color-accent: #8B1E1E;
-}
-
-body.theme-rdr2 header {
-    background-color: #8B1E1E;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-color: transparent;
-    transition: background-color 0.4s ease;
 }
 
 body.theme-dialga {
     --color-bg: #FAF6EC;
-    --color-surface: #C9A227;
-    --color-accent: #8A6D1D;
-}
-
-body.theme-dialga header {
-    background-color: #A67C27;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-color: transparent;
-    transition: background-color 0.4s ease;
 }
 
 body.theme-portfolio {
     --color-bg: #EDF0F7;
-    --color-surface: #3B5BA5;
-    --color-accent: #2F3E6F;
-}
-
-body.theme-portfolio header {
-    background-color: #2F3E6F;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-color: transparent;
-    transition: background-color 0.4s ease;
 }
 
 body.dark-mode{
@@ -593,63 +543,40 @@ body.dark-mode .ctaButton:hover{
     color:#1F2933;
 }
 
-body.dark-mode.theme-daraz{
-    --color-bg:#1F2933;
-    --color-text:#fff;
-    --color-muted:#fff;
-    --color-accent:#fff;
-}
-
+/* Dark mode: hovering a project card only tints the header; body background stays the standard dark bg */
 body.dark-mode.theme-daraz header{
     background-color:#F08033;
-}
-
-body.dark-mode.theme-ecomart{
-    --color-bg:#1F2933;
-    --color-surface:#A4D039;
-    --color-text:#fff;
-    --color-muted:#fff;
-    --color-accent:#fff;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border-color:transparent;
 }
 
 body.dark-mode.theme-ecomart header{
     background-color:#2F6F3E;
-}
-
-body.dark-mode.theme-rdr2{
-    --color-bg:#1F2933;
-    --color-surface:#C1272D;
-    --color-text:#fff;
-    --color-muted:#fff;
-    --color-accent:#fff;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border-color:transparent;
 }
 
 body.dark-mode.theme-rdr2 header{
     background-color:#8B1E1E;
-}
-
-body.dark-mode.theme-dialga{
-    --color-bg:#1F2933;
-    --color-surface:#C9A227;
-    --color-text:#fff;
-    --color-muted:#fff;
-    --color-accent:#fff;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border-color:transparent;
 }
 
 body.dark-mode.theme-dialga header{
     background-color:#A67C27;
-}
-
-body.dark-mode.theme-portfolio{
-    --color-bg:#1F2933;
-    --color-surface:#3B5BA5;
-    --color-text:#fff;
-    --color-muted:#fff;
-    --color-accent:#fff;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border-color:transparent;
 }
 
 body.dark-mode.theme-portfolio header{
     background-color:#2F3E6F;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border-color:transparent;
 }
 
 @media (max-width: 768px) {
